@@ -1,14 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2006 Verigy. All rights reserved.
- *
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *     Verigy - initial API and implementation
- *******************************************************************************/
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.eclipse.helper;
 
 import java.util.concurrent.Semaphore;
 
- 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -40,7 +44,8 @@ public class EclipseWizardHelper {
      * @param block
      *            true if it opens a model dialog
      */
-    public IWorkbenchWizard openWizard(String wizardID, IStructuredSelection selection,
+    @SuppressWarnings("null")
+	public IWorkbenchWizard openWizard(String wizardID, IStructuredSelection selection,
             final boolean block) {
         IWorkbench workbench = PlatformUI.getWorkbench();
         IWizardDescriptor wizDesc = workbench.getNewWizardRegistry().findWizard(wizardID);
@@ -50,7 +55,7 @@ public class EclipseWizardHelper {
         try {
             wizard = wizDesc.createWizard();
         } catch (CoreException e) {
-            
+            e.printStackTrace();
         }
        // Assert.assertNotNull(wizard);
         //bugfix 02-11-2007
@@ -75,7 +80,7 @@ public class EclipseWizardHelper {
         try {
             sem.acquire();
         } catch (InterruptedException e) {
-           // Assert.fail("interruped while waiting for dialog to open");
+        	e.printStackTrace();
         }
 
         return wizard;

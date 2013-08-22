@@ -1,3 +1,14 @@
+/*******************************************************************************
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
 import java.util.ArrayList;
@@ -28,6 +39,7 @@ import com.google.code.t4eclipse.core.finder.IConditionFind;
 import com.google.code.t4eclipse.selection.ControlSelection;
 import com.google.code.t4eclipse.tools.utility.ReflctionProvider;
 
+@SuppressWarnings("restriction")
 public class ControlUtility {
 
 	private static final String FULL_NAME = "FullName";
@@ -95,7 +107,7 @@ public class ControlUtility {
 				Object data = item.getData();
 				// System.out.println(data.getClass().getName() + " ");
 				if (data != null && data instanceof ActionContributionItem) {
-					ActionContributionItem ci = (ActionContributionItem) data;
+//					ActionContributionItem ci = (ActionContributionItem) data;
 
 					// System.out.println(ci.getAction().getClass().getName()
 					// + "...id:" + ci.getId());
@@ -183,6 +195,7 @@ public class ControlUtility {
 		Widget[] all = Finder.getDefault().findAllByCondition(c,
 				new IConditionFind() {
 
+					@SuppressWarnings("null")
 					public boolean check(Widget widget) {
 						if (widget instanceof Control) {
 							Control tempC = (Control) widget;
@@ -209,7 +222,6 @@ public class ControlUtility {
 		return menuList;
 	}
 
-	@SuppressWarnings("restriction")
 	public static Control getPartControl(IWorkbenchPart part) {
 		IWorkbenchPage page = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getActivePage();

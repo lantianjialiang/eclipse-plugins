@@ -1,3 +1,14 @@
+/*******************************************************************************
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -20,6 +31,7 @@ import org.eclipse.ui.internal.registry.IWorkbenchRegistryConstants;
 
 import com.google.code.t4eclipse.core.utility.ReflectionUtil.ObjectResult;
 
+@SuppressWarnings("restriction")
 public class ToolBarUtility {
 	public static final String TEXT = "Text";
 
@@ -148,7 +160,6 @@ public class ToolBarUtility {
 		return null;
 	}
 	
-	@SuppressWarnings("restriction")
 	public static ICoolBarManager getEclipseCoolBarForE4() {
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();

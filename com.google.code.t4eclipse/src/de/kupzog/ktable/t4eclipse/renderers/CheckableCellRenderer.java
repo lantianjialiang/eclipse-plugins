@@ -117,7 +117,8 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
     /* (non-Javadoc)
      * @see de.kupzog.ktable.KTableCellRenderer#getOptimalWidth(org.eclipse.swt.graphics.GC, int, int, java.lang.Object, boolean)
      */
-    public int getOptimalWidth(GC gc, int col, int row, Object content, boolean fixed, KTableModel model) {
+    @Override
+	public int getOptimalWidth(GC gc, int col, int row, Object content, boolean fixed, KTableModel model) {
         return IMAGE_CHECKED.getBounds().x + 6;
     }
     
@@ -126,7 +127,8 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
      * 
      * @see de.kupzog.ktable.t4eclipse.KTableCellRenderer#drawCell(GC, Rectangle, int, int, Object, boolean, boolean, boolean, KTableModel)
      */
-    public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, 
+    @Override
+	public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, 
             boolean focus, boolean fixed, boolean clicked, KTableModel model) {
         
         // draw focus sign:

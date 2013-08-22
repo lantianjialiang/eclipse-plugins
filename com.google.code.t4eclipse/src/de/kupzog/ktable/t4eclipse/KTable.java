@@ -245,7 +245,8 @@ public class KTable extends Canvas {
 	    }	    
     }
 
-    public void dispose() {
+    @Override
+	public void dispose() {
 
     	if (m_defaultCursor != null)
             m_defaultCursor.dispose();
@@ -269,21 +270,25 @@ public class KTable extends Canvas {
         });
 
         addControlListener(new ControlAdapter() {
-            public void controlResized(ControlEvent e) {
+            @Override
+			public void controlResized(ControlEvent e) {
                 redraw();
             }
         });
 
         addMouseListener(new MouseAdapter() {
-            public void mouseDown(MouseEvent e) {
+            @Override
+			public void mouseDown(MouseEvent e) {
                 onMouseDown(e);
             }
 
-            public void mouseUp(MouseEvent e) {
+            @Override
+			public void mouseUp(MouseEvent e) {
                 onMouseUp(e);
             }
 
-            public void mouseDoubleClick(MouseEvent e) {
+            @Override
+			public void mouseDoubleClick(MouseEvent e) {
                 onMouseDoubleClick(e);
             }
         });
@@ -295,7 +300,8 @@ public class KTable extends Canvas {
         });
 
         addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
+            @Override
+			public void keyPressed(KeyEvent e) {
                 onKeyDown(e);
             }
         });
@@ -304,7 +310,8 @@ public class KTable extends Canvas {
             
             private Point[] oldSelections;
             
-            public void cellSelected(int col, int row, int statemask) {
+            @Override
+			public void cellSelected(int col, int row, int statemask) {
                 if (isHighlightSelectionInHeader() && (statemask & SWT.SHIFT) == 0) {
 					Point[] selections = getCellSelection();
 					GC gc = new GC(KTable.this);
@@ -390,7 +397,8 @@ public class KTable extends Canvas {
     	
     	if (getVerticalBar() != null) {
     	    getVerticalBar().addSelectionListener(new SelectionAdapter() {
-    	        public void widgetSelected(SelectionEvent e) {
+    	        @Override
+				public void widgetSelected(SelectionEvent e) {
     	            int oldTopRow = m_TopRow;
     	            m_TopRow = getVerticalBar().getSelection();
     	            if (oldTopRow!=m_TopRow)
@@ -403,7 +411,8 @@ public class KTable extends Canvas {
     	
     	if (getHorizontalBar() != null) {
     	    getHorizontalBar().addSelectionListener(new SelectionAdapter() {
-    	        public void widgetSelected(SelectionEvent e) {
+    	        @Override
+				public void widgetSelected(SelectionEvent e) {
     	            int oldLeftCol = m_LeftColumn;
     	            m_LeftColumn = getHorizontalBar().getSelection();
     	            if (oldLeftCol!=m_LeftColumn)
@@ -2332,7 +2341,8 @@ public class KTable extends Canvas {
      * @see de.kupzog.ktable.t4eclipse.KTable#getToolTipText()
      * @param tooltip The global tooltip for the table.
      */
-    public void setToolTipText(String tooltip) {
+    @Override
+	public void setToolTipText(String tooltip) {
         m_nativTooltip = tooltip;
     }
     
@@ -2343,7 +2353,8 @@ public class KTable extends Canvas {
      * @see de.kupzog.ktable.t4eclipse.KTable#setToolTipText(String)
      * @see de.kupzog.ktable.t4eclipse.KTableModel#getTooltipAt(int, int)
      */
-    public String getToolTipText() {
+    @Override
+	public String getToolTipText() {
         return m_nativTooltip;
     }
     
@@ -2951,7 +2962,8 @@ public class KTable extends Canvas {
      *  (non-Javadoc)
      * @see org.eclipse.swt.widgets.Widget#getStyle()
      */
-    public int getStyle() {
+    @Override
+	public int getStyle() {
     	return m_Style;
     }
     

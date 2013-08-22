@@ -1,9 +1,14 @@
 /*******************************************************************************
- * Copyright (c) 2006 Verigy. All rights reserved.
- *
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *     Verigy - initial API and implementation
- *******************************************************************************/
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
 
@@ -11,8 +16,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
 
-import com.google.code.t4eclipse.core.swt.helper.HelperRoot;
 import com.google.code.t4eclipse.core.swt.helper.Displays.BooleanResult;
+import com.google.code.t4eclipse.core.swt.helper.HelperRoot;
 
 
 /**
@@ -34,7 +39,8 @@ class CheckBlockShell extends HelperRoot implements Runnable {
             sleepPrim(10 * 1000);
             boolean isTimeOut = syncExec(new BooleanResult() {
 
-                public boolean result() {
+                @SuppressWarnings("boxing")
+				public boolean result() {
                     Shell s = Display.getDefault().getActiveShell();
                     if (s != null) {
                         Object data = s.getData(GuilibUtility.TIME_OUT_START_AT);
@@ -52,7 +58,7 @@ class CheckBlockShell extends HelperRoot implements Runnable {
                 }
             });
             if (isTimeOut) {
-
+            	//TODO
             }
         }
     }
@@ -70,8 +76,8 @@ class CheckBlockShell extends HelperRoot implements Runnable {
      *
      * @see com.google.code.t4eclipse.core.swt.helper.HelperRoot#checkInstance(org.eclipse.swt.widgets.Widget)
      */
-    protected void checkInstance(Widget widget) {
+    @Override
+	protected void checkInstance(Widget widget) {
         // TODO Auto-generated method stub
-
     }
 }

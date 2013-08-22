@@ -1,10 +1,14 @@
 /*******************************************************************************
- * Copyright (c) 2006 Verigy. All rights reserved.
- *
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *     Verigy - initial API and implementation
- *******************************************************************************/
-
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
 
@@ -15,7 +19,6 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.CoolItem;
 import org.eclipse.swt.widgets.Decorations;
 import org.eclipse.swt.widgets.Display;
@@ -90,13 +93,12 @@ public class GuilibUtility {
     private static void addTimeOutFilter() {
         Display.getDefault().addFilter(SWT.Show, new Listener() {
 
-            public void handleEvent(Event event) {
+            @SuppressWarnings("boxing")
+			public void handleEvent(Event event) {
 
                 Widget w = event.widget;
                 if (w instanceof Shell) {
-                    w
-                            .setData(GuilibUtility.TIME_OUT_START_AT, System
-                                    .currentTimeMillis());
+                    w.setData(GuilibUtility.TIME_OUT_START_AT, System.currentTimeMillis());
                 }
 
             }
@@ -110,7 +112,8 @@ public class GuilibUtility {
      * @param w
      * @return style string
      */
-    public static String getStyle(Widget w) {
+    @SuppressWarnings("unused")
+	public static String getStyle(Widget w) {
         int style = w.getStyle();
         String result = "";
         // -1 is the default one
@@ -191,7 +194,6 @@ public class GuilibUtility {
                 result += "TITLE | ";
                 // } else if (w instanceof DateTime) {
             } else if (false) {
-
                 result += "DATE | ";
             } else {
                 result += "ROMAN or CHECK  or SHADOW_NONE or TITLE | ";

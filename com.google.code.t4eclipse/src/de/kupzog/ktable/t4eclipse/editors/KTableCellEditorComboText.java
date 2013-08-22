@@ -1,24 +1,27 @@
-
-/*******************************************************************************
+/*
  * Copyright (C) 2004 by Friederich Kupzog Elektronik & Software
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Friederich Kupzog - initial API and implementation
- *    	fkmk@kupzog.de
- *		www.kupzog.de/fkmk
- *******************************************************************************/ 
-
-
+    
+    Authors: Friederich Kupzog
+             Lorenz Maierhofer
+    fkmk@kupzog.de
+    www.kupzog.de/fkmk
+*/
 package de.kupzog.ktable.t4eclipse.editors;
-import org.eclipse.swt.*;
-import org.eclipse.swt.custom.*;
-import org.eclipse.swt.events.*;
-import org.eclipse.swt.graphics.*;
-import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.TraverseEvent;
+import org.eclipse.swt.events.TraverseListener;
+import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 
 import de.kupzog.ktable.t4eclipse.KTable;
 import de.kupzog.ktable.t4eclipse.KTableCellEditor;
@@ -33,10 +36,11 @@ extends KTableCellEditor
 {
 	private CCombo m_Combo;
 	private String m_Items[];
-	private Cursor m_ArrowCursor = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
+	private final Cursor m_ArrowCursor = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
 
-	private KeyAdapter keyListener = new KeyAdapter() {
-	        public void keyPressed(KeyEvent e) {
+	private final KeyAdapter keyListener = new KeyAdapter() {
+	        @Override
+			public void keyPressed(KeyEvent e) {
 	            try {
 	                onKeyPressed(e);
 	            } catch (Exception ex) {
@@ -45,12 +49,13 @@ extends KTableCellEditor
 	        }
 	    };
 	    
-	    private TraverseListener travListener = new TraverseListener() {
+	    private final TraverseListener travListener = new TraverseListener() {
 	        public void keyTraversed(TraverseEvent e) {
 	            onTraverse(e);
 	        }
 	    };
 
+	@Override
 	public void open(KTable table, int row, int col, Rectangle rect) {
 		super.open(table, row, col, rect);
 		m_Combo.setFocus();
@@ -58,6 +63,7 @@ extends KTableCellEditor
 		m_Combo.setSelection(new Point(0, m_Combo.getText().length()));
 	}
 
+	@Override
 	public void close(boolean save) {
 		if (save)
 			m_Model.setContentAt(m_Col, m_Row, m_Combo.getText());
@@ -68,6 +74,7 @@ extends KTableCellEditor
         m_ArrowCursor.dispose();
 	}
 
+	@Override
 	protected Control createControl() {
 		m_Combo = new CCombo(m_Table, SWT.NONE);
 		m_Combo.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
@@ -79,6 +86,7 @@ extends KTableCellEditor
 		return m_Combo;
 	}
 	
+	@Override
 	public void setBounds(Rectangle rect) 
 	{
 		super.setBounds(new Rectangle(rect.x, rect.y+1,
@@ -91,6 +99,7 @@ extends KTableCellEditor
 	 * Comment that out if you want the up and down keys move the editor.<br>
 	 * Hint by David Sciamma.
 	 */
+	@Override
 	protected void onTraverse(TraverseEvent e)
     {
         // set selection to the appropriate next element:
@@ -117,7 +126,8 @@ extends KTableCellEditor
     /* (non-Javadoc)
      * @see de.kupzog.ktable.KTableCellEditor#setContent(java.lang.String)
      */
-    public void setContent(Object content) {
+    @Override
+	public void setContent(Object content) {
        if (content instanceof Integer) 
            m_Combo.select(((Integer)content).intValue());
        else 

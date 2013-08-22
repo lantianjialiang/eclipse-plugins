@@ -28,7 +28,7 @@ import org.eclipse.swt.graphics.Point;
 public abstract class KTableDefaultModel implements KTableModel {
 
     protected Hashtable m_ColWidths = new Hashtable();
-    private Hashtable m_RowHeights = new Hashtable();
+    private final Hashtable m_RowHeights = new Hashtable();
     
     /////////////////////////////////////////////////////////
     // HANDLE HEIGHT AND WIDTH OF CELLS
@@ -107,7 +107,8 @@ public abstract class KTableDefaultModel implements KTableModel {
      * @see #getInitialFirstRowHeight()
      * @deprecated Use getRowHeight(0) instead.
      */
-    public int getFirstRowHeight() {
+    @Deprecated
+	public int getFirstRowHeight() {
         return getRowHeight(0);
     }
     
@@ -118,7 +119,8 @@ public abstract class KTableDefaultModel implements KTableModel {
      * @see #setFirstRowHeight(int);
      * @deprecated Implement getInitialRowHeight(0) instead!
      */
-    public int getInitialFirstRowHeight() {
+    @Deprecated
+	public int getInitialFirstRowHeight() {
     	return -1;
     }
         
@@ -143,7 +145,8 @@ public abstract class KTableDefaultModel implements KTableModel {
      * Sets the row height for the first row.
      * @deprecated Use setRowHeight(0, value) instead.
      */
-    public void setFirstRowHeight(int value) {
+    @Deprecated
+	public void setFirstRowHeight(int value) {
         setRowHeight(0, value);
     }
     

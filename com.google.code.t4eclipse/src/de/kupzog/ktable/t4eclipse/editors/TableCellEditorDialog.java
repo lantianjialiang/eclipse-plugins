@@ -31,6 +31,7 @@ import de.kupzog.ktable.t4eclipse.KTableCellEditor;
 public abstract class TableCellEditorDialog extends KTableCellEditor {
 	private Dialog m_Dialog;
 
+	@Override
 	public void open(KTable table, int col, int row, Rectangle rect) {
 	    m_Table = table;
 		m_Model = table.getModel();
@@ -66,6 +67,7 @@ public abstract class TableCellEditorDialog extends KTableCellEditor {
 	/**
 	 * Called when the open-method returns.
 	 */
+	@Override
 	public void close(boolean save) {
 		super.close(save);
 		m_Dialog = null;
@@ -76,6 +78,7 @@ public abstract class TableCellEditorDialog extends KTableCellEditor {
 	 * DEFAULT: Ignored. Set the required shell properties by
 	 * overwriting the method <code>setupShellProperties(Shell)</code>.
 	 */
+	@Override
 	public void setBounds(Rectangle rect) {
 	    // ignored.
 	}
@@ -84,14 +87,16 @@ public abstract class TableCellEditorDialog extends KTableCellEditor {
      * Ignored.
      * @see de.kupzog.ktable.t4eclipse.KTableCellEditor#setContent(java.lang.String)
      */
-    public void setContent(Object content) {
+    @Override
+	public void setContent(Object content) {
     }
     
     /**
      * Ignored, since it is no longer in use. We use a dialog instead 
      * of a control!
      */
-    protected Control createControl() {
+    @Override
+	protected Control createControl() {
         return null;
     }
 }

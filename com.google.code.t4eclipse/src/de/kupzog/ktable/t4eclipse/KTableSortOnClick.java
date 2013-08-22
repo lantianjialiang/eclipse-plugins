@@ -1,3 +1,14 @@
+/*
+ * Copyright (C) 2004 by Friederich Kupzog Elektronik & Software
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+
+Authors: 
+Friederich Kupzog,  fkmk@kupzog.de, www.kupzog.de/fkmk
+Lorenz Maierhofer
+*/
 package de.kupzog.ktable.t4eclipse;
 
 
@@ -20,6 +31,7 @@ public class KTableSortOnClick extends KTableCellSelectionAdapter {
 	/**
 	 * Implements sorting behavior when clicking on the fixed header row.
 	 */
+	@Override
 	public void fixedCellSelected(int col, int row, int statemask) {
 		if (m_Table.getModel() instanceof KTableSortedModel) {
 			KTableSortedModel model = (KTableSortedModel) m_Table.getModel();

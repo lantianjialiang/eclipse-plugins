@@ -1,14 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2006 Verigy. All rights reserved.
- *
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *     Verigy - initial API and implementation
- *******************************************************************************/
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.eclipse.helper;
 
-import java.util.*;
+import java.util.ArrayList;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -96,30 +100,4 @@ public class EclipseCommonHelper {
 				break;
 		}
 	}
-
-//	public void disableBuildAtuomatically() {
-//
-//		IWorkspace ws = ResourcesPlugin.getWorkspace();
-//		IWorkspaceDescription desc = ws.getDescription();
-//		desc.setAutoBuilding(false);
-//		try {
-//			ws.setDescription(desc);
-//		} catch (CoreException e) {
-//			// do nothing
-//		}
-//
-//	}
-//
-//	public void BuildAtuomatically() {
-//
-//		IWorkspace ws = ResourcesPlugin.getWorkspace();
-//		IWorkspaceDescription desc = ws.getDescription();
-//		desc.setAutoBuilding(true);
-//		try {
-//			ws.setDescription(desc);
-//		} catch (CoreException e) {
-//			// do nothing
-//		}
-//
-//	}
 }

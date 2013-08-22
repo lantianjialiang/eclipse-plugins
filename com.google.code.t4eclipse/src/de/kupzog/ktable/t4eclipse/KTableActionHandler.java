@@ -119,6 +119,7 @@ public class KTableActionHandler {
 			setEnabled(false);
 			setText("Kopieren");
 		}
+		@Override
 		public void run() {
 			if (m_table != null && !m_table.isDisposed()) {
 			    setClipboardContent(m_table.getCellSelection());
@@ -138,6 +139,7 @@ public class KTableActionHandler {
 			setEnabled(false);
 			setText("Ganze Tabelle kopieren");
 		}
+		@Override
 		public void run() {
 			if (m_table != null && !m_table.isDisposed()) {
 			    setClipboardContent(getAllTableCells());
@@ -169,6 +171,7 @@ public class KTableActionHandler {
 			setEnabled(false);
 			setText("Ausschneiden");
 		}
+		@Override
 		public void run() {
 			if (m_table != null && !m_table.isDisposed()) {
 			    Point[] selection = m_table.getCellSelection();
@@ -207,6 +210,7 @@ public class KTableActionHandler {
 			setEnabled(false);
 			setText("Alles Markieren");
 		}
+		@Override
 		public void run() {
 			if (m_table != null && !m_table.isDisposed()) {
 			    KTableModel model = m_table.getModel();
@@ -244,6 +248,7 @@ public class KTableActionHandler {
 			setEnabled(false);
 			setText("Einf�gen");
 		}
+		@Override
 		public void run() {
 			if (m_table != null && !m_table.isDisposed()) {
 			    pasteToSelection(getTextFromClipboard(), m_table.getCellSelection());

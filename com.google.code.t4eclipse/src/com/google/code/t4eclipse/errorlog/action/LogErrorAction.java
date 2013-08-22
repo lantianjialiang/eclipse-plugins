@@ -1,3 +1,14 @@
+/*******************************************************************************
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.errorlog.action;
 
 import org.eclipse.core.runtime.ILogListener;
@@ -12,7 +23,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
- 
 
 import com.google.code.t4eclipse.errorlog.data.LogChecker;
 import com.google.code.t4eclipse.tools.dialog.InternalErrorDialog;
@@ -47,10 +57,8 @@ public class LogErrorAction implements IWorkbenchWindowActionDelegate {
 
 	}
 
-	//
 	public void run(IAction action) {
 		LogChecker.setCheck(action.isChecked());
-
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {

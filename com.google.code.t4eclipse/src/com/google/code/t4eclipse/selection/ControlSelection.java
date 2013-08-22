@@ -1,3 +1,14 @@
+/*******************************************************************************
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.selection;
 
 import org.eclipse.jface.viewers.ISelection;
@@ -9,9 +20,9 @@ import com.google.code.t4eclipse.core.utility.ControlUtility;
 public class ControlSelection implements org.eclipse.ui.IActionFilter,
 		ISelection {
 
-	private String className;
-	private ControlSelection parent;
-	private Control c;
+	private final String className;
+	private final ControlSelection parent;
+	private final Control c;
 
 	public ControlSelection(Control c) {
 		this(c, null);
@@ -92,7 +103,6 @@ public class ControlSelection implements org.eclipse.ui.IActionFilter,
 	}
 
 	public ControlSelection getParent() {
-		// TODO Auto-generated method stub
 		return this.parent;
 	}
 

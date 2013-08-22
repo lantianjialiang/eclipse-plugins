@@ -45,7 +45,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
     /*
      * @see de.kupzog.ktable.KTableDefaultModel#initialize()
      */
-    public void initialize() {
+    @Override
+	public void initialize() {
         super.initialize();
         int numberOfElems = getRowCount()-getFixedHeaderRowCount();
         rowMapping = new Vector(numberOfElems);
@@ -112,7 +113,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * @param row The row index used by the KTable.
      * @return Returns the row index as processed by the model.
      */
-    public int mapRowIndexToModel(int row) {
+    @Override
+	public int mapRowIndexToModel(int row) {
         // we only map non-fixed cells:
         if (row < getFixedHeaderRowCount()+getFixedSelectableRowCount())
             return row;
@@ -143,7 +145,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * @param row The row index as used in the model.
      * @return Returns the row index as needed by the KTable.
      */
-    public int mapRowIndexToTable(int row) {
+    @Override
+	public int mapRowIndexToTable(int row) {
         // we only map non-fixed cells:
         if (row < getFixedHeaderRowCount()+getFixedSelectableRowCount())
             return row;
@@ -163,7 +166,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * <code>doGetContentAt(int, int)</code>.
      * @see de.kupzog.ktable.t4eclipse.KTableModel#getContentAt(int, int)
      */
-    public Object getContentAt(int col, int row) {
+    @Override
+	public Object getContentAt(int col, int row) {
         int nrow = mapRowIndexToModel(row);
         // now have to check if the mapped cell is spanned, and if it is, take the
         // cell that is responsible for the content of the big cell:
@@ -177,7 +181,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * content.
      * @see de.kupzog.ktable.t4eclipse.KTableModel#getTooltipAt(int, int)
      */
-    public String getTooltipAt(int col, int row) {
+    @Override
+	public String getTooltipAt(int col, int row) {
         row = mapRowIndexToModel(row);
         Point valid = getValidCell(col, row);
         return doGetTooltipAt(valid.x, valid.y);
@@ -189,7 +194,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * <code>doGetCellEditor(int, int)</code>.
      * @see de.kupzog.ktable.t4eclipse.KTableModel#getCellEditor(int, int)
      */
-    public KTableCellEditor getCellEditor(int col, int row) {
+    @Override
+	public KTableCellEditor getCellEditor(int col, int row) {
         row = mapRowIndexToModel(row);
         // now have to check if the mapped cell is spanned, and if it is, take the
         // cell that is responsible for the content of the big cell:
@@ -203,7 +209,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * to actually set the content of a table cell to the model.
      * @see de.kupzog.ktable.t4eclipse.KTableModel#setContentAt(int, int, java.lang.Object)
      */
-    public void setContentAt(int col, int row, Object value) {
+    @Override
+	public void setContentAt(int col, int row, Object value) {
         row = mapRowIndexToModel(row);
         // now have to check if the mapped cell is spanned, and if it is, take the
         // cell that is responsible for the content of the big cell:
@@ -217,7 +224,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * to retrieve the cell renderer for a cell.
      * @see de.kupzog.ktable.t4eclipse.KTableModel#getCellRenderer(int, int)
      */
-    public KTableCellRenderer getCellRenderer(int col, int row) {
+    @Override
+	public KTableCellRenderer getCellRenderer(int col, int row) {
         row = mapRowIndexToModel(row);
         Point valid = getValidCell(col, row);
         return doGetCellRenderer(valid.x, valid.y);
@@ -229,7 +237,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
      * get the content of the spanned cell. 
      * @see de.kupzog.ktable.t4eclipse.KTableModel#belongsToCell(int, int)
      */
-    public Point belongsToCell(int col, int row) {
+    @Override
+	public Point belongsToCell(int col, int row) {
         if (getSortState() == KTableSortComparator.SORT_NONE)
             return doBelongsToCell(col, row);
         // if sorting is active, all cells get rendered seperately!

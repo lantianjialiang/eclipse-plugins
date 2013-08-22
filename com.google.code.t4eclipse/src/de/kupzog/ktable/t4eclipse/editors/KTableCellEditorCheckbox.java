@@ -46,6 +46,7 @@ public class KTableCellEditorCheckbox extends KTableCellEditor {
 	 * @param col
 	 * @param rect
 	 */
+	@Override
 	public void open(KTable table, int col, int row, Rectangle rect) {
 		m_Table = table;
 		m_Model = table.getModel();
@@ -64,6 +65,7 @@ public class KTableCellEditorCheckbox extends KTableCellEditor {
 	/**
 	 * Simply switches the boolean value in the model!
 	 */
+	@Override
 	public void close(boolean save) {
 	    if (save) {
 	        Object o = m_Model.getContentAt(m_Col, m_Row);
@@ -82,7 +84,8 @@ public class KTableCellEditorCheckbox extends KTableCellEditor {
      * the boolean value on activation!
      * @see de.kupzog.ktable.t4eclipse.KTableCellEditor#createControl()
      */
-    protected Control createControl() {
+    @Override
+	protected Control createControl() {
 		return null;
 	}
 
@@ -90,13 +93,15 @@ public class KTableCellEditorCheckbox extends KTableCellEditor {
      * This implementation does nothing!
      * @see de.kupzog.ktable.t4eclipse.KTableCellEditor#setContent(java.lang.Object)
      */
-    public void setContent(Object content) {
+    @Override
+	public void setContent(Object content) {
     }
 
     /**
 	 * @return Returns a value indicating on which actions 
 	 * this editor should be activated.
 	 */
+	@Override
 	public int getActivationSignals() {
 	    return SINGLECLICK | KEY_RETURN_AND_SPACE;
 	}

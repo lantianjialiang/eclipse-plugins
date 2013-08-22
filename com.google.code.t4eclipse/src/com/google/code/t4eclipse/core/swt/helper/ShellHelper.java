@@ -1,14 +1,17 @@
 /*******************************************************************************
- * Copyright (c) 2006 Verigy. All rights reserved.
- *
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *     Verigy - initial API and implementation
- *******************************************************************************/
-
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.swt.helper;
 
 import java.util.Stack;
-
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -102,6 +105,7 @@ public class ShellHelper extends HelperRoot {
 				DEFAULT_SHELL_INTERVAL, true);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Shell getShellFromDisplay(final String text) {
 
 		return (Shell) syncExec(new Result() {
@@ -138,6 +142,7 @@ public class ShellHelper extends HelperRoot {
 	 *            the shell under test.
 	 * @return the child shells.
 	 */
+	@SuppressWarnings("rawtypes")
 	public Shell[] getShells(final Shell shell) {
 		checkWidget(shell);
 		return (Shell[]) syncExec(new Result() {
@@ -147,6 +152,7 @@ public class ShellHelper extends HelperRoot {
 		});
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Shell getActiveShell() {
 		return (Shell) syncExec(new Result() {
 			public Object result() {
@@ -207,6 +213,7 @@ public class ShellHelper extends HelperRoot {
 				return false;
 			}
 
+			@SuppressWarnings("hiding")
 			private boolean checkShellClassName(Shell s, String name,
 					boolean isFullName) {
 				String className = isFullName ? s.getData().getClass()
@@ -239,6 +246,7 @@ public class ShellHelper extends HelperRoot {
 		});
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	protected void checkInstance(Widget widget) {
 		boolean b = widget instanceof Shell;

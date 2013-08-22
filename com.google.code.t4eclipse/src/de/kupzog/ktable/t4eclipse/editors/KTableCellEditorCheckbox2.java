@@ -33,8 +33,8 @@ import de.kupzog.ktable.t4eclipse.SWTX;
  */
 public class KTableCellEditorCheckbox2 extends KTableCellEditorCheckbox {
 
-    private Point m_Active;
-    private int m_hAlign, m_vAlign;
+    private final Point m_Active;
+    private final int m_hAlign, m_vAlign;
     
     /**
      * Creates a checkbox celleditor that is only sensible for mouse activation 
@@ -96,6 +96,7 @@ public class KTableCellEditorCheckbox2 extends KTableCellEditorCheckbox {
      * @param clickLocation The point where the mouseclick occured.
      * @return Returns true if the editor activation should happen.
 	 */
+	@Override
 	public boolean isApplicable(int eventType, KTable table, int col, int row, 
 			Point clickLocation, String keyInput, int stateMask) {
 		if (eventType == SINGLECLICK) {

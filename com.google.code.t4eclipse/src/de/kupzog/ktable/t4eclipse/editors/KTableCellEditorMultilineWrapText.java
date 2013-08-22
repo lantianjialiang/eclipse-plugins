@@ -28,8 +28,9 @@ public class KTableCellEditorMultilineWrapText extends KTableCellEditor
 {
 	private Text m_Text;
     
-    private KeyAdapter keyListener = new KeyAdapter() {
-        public void keyPressed(KeyEvent e) {
+    private final KeyAdapter keyListener = new KeyAdapter() {
+        @Override
+		public void keyPressed(KeyEvent e) {
             try {
                 onKeyPressed(e);
             } catch (Exception ex) {
@@ -38,13 +39,14 @@ public class KTableCellEditorMultilineWrapText extends KTableCellEditor
         }
     };
     
-    private TraverseListener travListener = new TraverseListener() {
+    private final TraverseListener travListener = new TraverseListener() {
         public void keyTraversed(TraverseEvent e) {
             onTraverse(e);
         }
     };
 	
 
+	@Override
 	public void open(KTable table, int col, int row, Rectangle rect) {
 		super.open(table, col, row, rect);
 		m_Text.setText(m_Model.getContentAt(m_Col, m_Row).toString());
@@ -54,6 +56,7 @@ public class KTableCellEditorMultilineWrapText extends KTableCellEditor
 	}
 
 
+	@Override
 	public void close(boolean save) {
         if (save)
             m_Model.setContentAt(m_Col, m_Row, m_Text.getText());
@@ -64,6 +67,7 @@ public class KTableCellEditorMultilineWrapText extends KTableCellEditor
     }
 
 
+	@Override
 	protected Control createControl() {
 		m_Text = new Text(m_Table,  SWT.MULTI | SWT.V_SCROLL | SWT.WRAP);
         m_Text.addKeyListener(keyListener);
@@ -74,6 +78,7 @@ public class KTableCellEditorMultilineWrapText extends KTableCellEditor
 	/* 
 	 * overridden from superclass
 	 */
+	@Override
 	public void setBounds(Rectangle rect) 
 	{
 		super.setBounds(new Rectangle(rect.x, rect.y,
@@ -83,7 +88,8 @@ public class KTableCellEditorMultilineWrapText extends KTableCellEditor
 	/* (non-Javadoc)
      * @see de.kupzog.ktable.KTableCellEditor#setContent(java.lang.Object)
      */
-    public void setContent(Object content) {
+    @Override
+	public void setContent(Object content) {
         m_Text.setText(content.toString());
         m_Text.setSelection(content.toString().length());
     }

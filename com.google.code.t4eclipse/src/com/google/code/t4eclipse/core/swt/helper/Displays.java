@@ -1,18 +1,20 @@
 /*******************************************************************************
- * Copyright (c) 2006 Verigy. All rights reserved.
- *
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *     Verigy - initial API and implementation
- *******************************************************************************/
-
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.swt.helper;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -47,6 +49,7 @@ public class Displays {
 	/**
 	 * Gets all undisposed root {@link Shell}s for the default {@link Display}.
 	 */
+    @SuppressWarnings("rawtypes")
 	public static List getShells() {
 		return getShells(getDisplay());
 	}
@@ -55,6 +58,7 @@ public class Displays {
 	 * Gets all undisposed root {@link Shell}s for the specified
 	 * {@link Display}.
 	 */
+    @SuppressWarnings("rawtypes")
 	public static List getShells(Display display) {
 		Shell[] shells = getShellsArray(display);
 		if (shells.length > 0)
@@ -68,6 +72,7 @@ public class Displays {
 	 *
 	 * @see #getShells(Display)
 	 */
+    @SuppressWarnings("rawtypes")
 	private static Shell[] getShellsArray(final Display display) {
 		if (!display.isDisposed()) {
 
@@ -90,16 +95,10 @@ public class Displays {
 	/*
 	 * The following methods are not specific to a particular Display.
 	 */
-
-
-
 	public static void syncExec(Display display, Runnable runnable) {
 		try {
 			display.syncExec(runnable);
 		} catch (SWTException exception) {
-//			if (exception.code == SWT.ERROR_FAILED_EXEC
-//					&& exception.getCause() instanceof AssertionFailedError)
-//				throw (AssertionFailedError) exception.getCause();
 			throw exception;
 		}
 	}
@@ -128,6 +127,7 @@ public class Displays {
 		String result();
 	}
 
+    @SuppressWarnings("rawtypes")
 	public static Object syncExec(Display display, final Result result) {
 		final Object[] wrapper = new Object[1];
 		display.syncExec(new Runnable() {

@@ -1,12 +1,17 @@
+/*******************************************************************************
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -18,6 +23,7 @@ public class ReflectionUtil {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static ObjectResult invokeMethod(String name, Object o, Class c) {
 
 		ObjectResult re = new ObjectResult();
@@ -49,7 +55,7 @@ public class ReflectionUtil {
 			re.methodOrFieldFound = true;
 			try {
 				m.setAccessible(true);
-				re.result = m.invoke(o, null);
+				re.result = m.invoke(o, (Object)null);
 			} catch (Exception e) {
 				re.ex = e;
 			}
@@ -114,24 +120,18 @@ public class ReflectionUtil {
 			final Method[] mm = new Method[] { m };
 
 			re.methodOrFieldFound = true;
-			// try {
-			// // re.result = m.invoke(o, null);
-			//
-			// } catch (Exception e) {
-			// re.ex = e;
-			// }
 			AtomicBoolean b = new AtomicBoolean(false);
 			NewThread newT = new NewThread(new ExRunnable() {
 
 				public void runEx() throws Exception {
 
-					re.result = mm[0].invoke(o, null);
+					re.result = mm[0].invoke(o, (Object)null);
 
 				}
 
+				@SuppressWarnings("unused")
 				public void run() {
 					// TODO Auto-generated method stub
-
 				}
 			}, b);
 
@@ -176,15 +176,16 @@ public class ReflectionUtil {
 	public static class NewThread extends Thread {
 		private Exception e;
 
-		private ExRunnable r;
+		private final ExRunnable r;
 
-		private AtomicBoolean isfinished;
+		private final AtomicBoolean isfinished;
 
 		public NewThread(ExRunnable r, AtomicBoolean b) {
 			this.r = r;
 			this.isfinished = b;
 		}
 
+		@Override
 		public void run() {
 			try {
 				r.runEx();

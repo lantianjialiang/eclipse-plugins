@@ -39,7 +39,8 @@ public class KTableCellEditorText2 extends KTableCellEditor
 	protected Text m_Text;
     
     protected KeyAdapter keyListener = new KeyAdapter() {
-        public void keyPressed(KeyEvent e) {
+        @Override
+		public void keyPressed(KeyEvent e) {
             try {
                 onKeyPressed(e);
             } catch (Exception ex) {
@@ -56,6 +57,7 @@ public class KTableCellEditorText2 extends KTableCellEditor
     };
 	
 
+	@Override
 	public void open(KTable table, int col, int row, Rectangle rect) {
 		super.open(table, col, row, rect);
 		m_Text.setText(m_Model.getContentAt(m_Col, m_Row).toString());
@@ -65,6 +67,7 @@ public class KTableCellEditorText2 extends KTableCellEditor
 	}
 
 
+	@Override
 	public void close(boolean save) {
         if (save)
             m_Model.setContentAt(m_Col, m_Row, m_Text.getText());
@@ -75,6 +78,7 @@ public class KTableCellEditorText2 extends KTableCellEditor
     }
 
 
+	@Override
 	protected Control createControl() {
 		m_Text = new Text(m_Table, SWT.NONE);
         m_Text.addKeyListener(keyListener);
@@ -86,6 +90,7 @@ public class KTableCellEditorText2 extends KTableCellEditor
 	 * Implement In-Textfield navigation with the keys... 
 	 * @see de.kupzog.ktable.t4eclipse.KTableCellEditor#onTraverse(org.eclipse.swt.events.TraverseEvent)
 	 */
+	@Override
 	protected void onTraverse(TraverseEvent e) {
 	    if (e.keyCode == SWT.ARROW_LEFT) {
 	        if (m_Text.getCaretPosition()==0 && m_Text.getSelectionCount()==0)
@@ -99,6 +104,7 @@ public class KTableCellEditorText2 extends KTableCellEditor
 	        super.onTraverse(e);
 	}
 	
+	@Override
 	protected void onKeyPressed(KeyEvent e) {
 		if ((e.character == '\r')  && ((e.stateMask & SWT.SHIFT) == 0)) {
 			close(true);
@@ -112,6 +118,7 @@ public class KTableCellEditorText2 extends KTableCellEditor
 	/* 
 	 * overridden from superclass
 	 */
+	@Override
 	public void setBounds(Rectangle rect) 
 	{
 		super.setBounds(new Rectangle(rect.x, rect.y+(rect.height - 15)/2+1,
@@ -121,7 +128,8 @@ public class KTableCellEditorText2 extends KTableCellEditor
 	/* (non-Javadoc)
      * @see de.kupzog.ktable.KTableCellEditor#setContent(java.lang.Object)
      */
-    public void setContent(Object content) {
+    @Override
+	public void setContent(Object content) {
         m_Text.setText(content.toString());
         m_Text.setSelection(content.toString().length());
     }

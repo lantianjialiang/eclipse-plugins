@@ -1,8 +1,14 @@
 /*
- * Created on 16.10.2005
- *
- * 
- */
+ * Copyright (C) 2004 by Friederich Kupzog Elektronik & Software
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+
+Authors: 
+Friederich Kupzog,  fkmk@kupzog.de, www.kupzog.de/fkmk
+Lorenz Maierhofer
+*/
 package de.kupzog.ktable.t4eclipse;
 
 
@@ -23,7 +29,8 @@ public abstract class KTableNoScrollModel extends KTableSortedModel {
         _table = table;
     }
     
-    public void initialize() {
+    @Override
+	public void initialize() {
         super.initialize();
         int weightSum=1;
         for (int i=0; i<getColumnCount(); i++){
@@ -67,7 +74,8 @@ public abstract class KTableNoScrollModel extends KTableSortedModel {
      *  (Kein Javadoc)
      * @see de.kupzog.ktable.KTableModel#getColumnWidth(int)
      */
-    public int getColumnWidth(int col) {        
+    @Override
+	public int getColumnWidth(int col) {        
         double percent = super.getColumnWidth(col)/((double)FACTOR); 
         if (_table!=null && !_table.isDisposed()) {
             return (int)((_table.getClientArea().width-1)*percent);
@@ -78,7 +86,8 @@ public abstract class KTableNoScrollModel extends KTableSortedModel {
     /* (non-Javadoc)
      * @see de.kupzog.ktable.KTableModel#setColumnWidth(int, int)
      */
-    public void setColumnWidth(int col, int value) {
+    @Override
+	public void setColumnWidth(int col, int value) {
         int tableWidth = _table.getClientArea().width;
         double percent = (value+1)/(double)tableWidth;
         if (col==getColumnCount()-1) {

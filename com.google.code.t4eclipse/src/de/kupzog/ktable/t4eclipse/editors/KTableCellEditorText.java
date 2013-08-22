@@ -38,8 +38,9 @@ public class KTableCellEditorText extends KTableCellEditor
 {
 	protected Text m_Text;
     
-    private KeyAdapter keyListener = new KeyAdapter() {
-        public void keyPressed(KeyEvent e) {
+    private final KeyAdapter keyListener = new KeyAdapter() {
+        @Override
+		public void keyPressed(KeyEvent e) {
             try {
                 onKeyPressed(e);
             } catch (Exception ex) {
@@ -48,13 +49,14 @@ public class KTableCellEditorText extends KTableCellEditor
         }
     };
     
-    private TraverseListener travListener = new TraverseListener() {
+    private final TraverseListener travListener = new TraverseListener() {
         public void keyTraversed(TraverseEvent e) {
             onTraverse(e);
         }
     };
 	
 
+	@Override
 	public void open(KTable table, int col, int row, Rectangle rect) {
 		super.open(table, col, row, rect);
 		m_Text.setText(m_Model.getContentAt(m_Col, m_Row).toString());
@@ -64,6 +66,7 @@ public class KTableCellEditorText extends KTableCellEditor
 	}
 
 
+	@Override
 	public void close(boolean save) {
 		if (m_Text!=null) {
 			if (save)
@@ -78,6 +81,7 @@ public class KTableCellEditorText extends KTableCellEditor
 		}
 	}
 	
+	@Override
 	protected Control createControl() {
 		m_Text = new Text(m_Table, SWT.NONE);
         m_Text.addKeyListener(keyListener);
@@ -97,7 +101,8 @@ public class KTableCellEditorText extends KTableCellEditor
 	/* (non-Javadoc)
      * @see de.kupzog.ktable.KTableCellEditor#setContent(java.lang.Object)
      */
-    public void setContent(Object content) {
+    @Override
+	public void setContent(Object content) {
         m_Text.setText(content.toString());
         m_Text.setSelection(content.toString().length());
     }

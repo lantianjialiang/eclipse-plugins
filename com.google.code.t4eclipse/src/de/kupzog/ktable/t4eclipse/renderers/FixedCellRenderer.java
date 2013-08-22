@@ -86,7 +86,8 @@ public class FixedCellRenderer extends DefaultCellRenderer {
      * 
      * @see de.kupzog.ktable.t4eclipse.KTableCellRenderer#drawCell(GC, Rectangle, int, int, Object, boolean, boolean, boolean, KTableModel)
      */
-    public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, 
+    @Override
+	public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, 
             boolean focus, boolean fixed, boolean clicked, KTableModel model) {
         applyFont(gc);
         
@@ -206,7 +207,8 @@ public class FixedCellRenderer extends DefaultCellRenderer {
      * @return returns the currently set background color.
      * If none was set, the default value is returned.
      */
-    public Color getBackground() {
+    @Override
+	public Color getBackground() {
         if (m_bgColor!=null)
             return m_bgColor;
         return COLOR_FIXEDBACKGROUND;

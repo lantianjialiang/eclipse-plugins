@@ -34,10 +34,11 @@ import de.kupzog.ktable.t4eclipse.KTableCellEditor;
 public class KTableCellEditorCombo extends KTableCellEditor {
 	private CCombo m_Combo;
 	private String m_Items[];
-	private Cursor m_ArrowCursor = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
+	private final Cursor m_ArrowCursor = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
     
-    private KeyAdapter keyListener = new KeyAdapter() {
-        public void keyPressed(KeyEvent e) {
+    private final KeyAdapter keyListener = new KeyAdapter() {
+        @Override
+		public void keyPressed(KeyEvent e) {
             try {
                 onKeyPressed(e);
             } catch (Exception ex) {
@@ -47,12 +48,13 @@ public class KTableCellEditorCombo extends KTableCellEditor {
        }
     };
     
-    private TraverseListener travListener = new TraverseListener() {
+    private final TraverseListener travListener = new TraverseListener() {
         public void keyTraversed(TraverseEvent e) {
             onTraverse(e);
         }
     };
 
+	@Override
 	public void open(KTable table, int row, int col, Rectangle rect) {
 		super.open(table, row, col, rect);
 		String content =m_Model.getContentAt(m_Col, m_Row).toString(); 
@@ -60,6 +62,7 @@ public class KTableCellEditorCombo extends KTableCellEditor {
 		m_Combo.setSelection(new Point(0, content.length()));
 	}
 
+	@Override
 	public void close(boolean save) {
         if (save)
             m_Model.setContentAt(m_Col, m_Row, m_Combo.getText());
@@ -70,6 +73,7 @@ public class KTableCellEditorCombo extends KTableCellEditor {
         m_ArrowCursor.dispose();
 	}
 
+	@Override
 	protected Control createControl() {
 		m_Combo = new CCombo(m_Table, SWT.READ_ONLY);
 		m_Combo.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
@@ -90,6 +94,7 @@ public class KTableCellEditorCombo extends KTableCellEditor {
 	 * Comment that out if you want the up and down keys move the editor.<br>
 	 * Hint by David Sciamma.
 	 */
+	@Override
 	protected void onTraverse(TraverseEvent e)
     {
         // set selection to the appropriate next element:
@@ -108,6 +113,7 @@ public class KTableCellEditorCombo extends KTableCellEditor {
         }
     } 
 	
+	@Override
 	public void setBounds(Rectangle rect) 
 	{
 		super.setBounds(new Rectangle(rect.x, rect.y+1,
@@ -121,7 +127,8 @@ public class KTableCellEditorCombo extends KTableCellEditor {
     /* (non-Javadoc)
      * @see de.kupzog.ktable.KTableCellEditor#setContent(java.lang.String)
      */
-    public void setContent(Object content) {
+    @Override
+	public void setContent(Object content) {
        if (content instanceof Integer) {
            m_Combo.select(((Integer)content).intValue());
        } else if (content instanceof String) {

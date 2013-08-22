@@ -69,6 +69,7 @@ public abstract class KTableCellEditor {
 			m_Control = createControl();
 			m_Control.setToolTipText(m_toolTip);
 			m_Control.addFocusListener(new FocusAdapter() {
+				@Override
 				public void focusLost(FocusEvent arg0) {
 					if (m_Control!=null && !m_Control.isDisposed())
 						close(true);

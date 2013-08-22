@@ -1,51 +1,47 @@
+/*******************************************************************************
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
 import java.util.List;
-import java.util.Stack;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.action.ActionContributionItem;
-import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.events.MenuEvent;
 import org.eclipse.swt.events.MenuListener;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
-import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.RetargetAction;
-import org.eclipse.ui.internal.ObjectPluginAction;
-import org.eclipse.ui.internal.PartPane;
-import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.internal.PluginAction;
 import org.eclipse.ui.internal.registry.IWorkbenchRegistryConstants;
-import org.eclipse.ui.part.ViewPart;
 
 import com.google.code.t4eclipse.core.utility.ReflectionUtil.ObjectResult;
-import com.google.code.t4eclipse.selection.ControlSelection;
 import com.google.code.t4eclipse.tools.action.AnalyzeNextMenuAction;
-import com.google.code.t4eclipse.tools.utility.ReflctionProvider;
 import com.google.code.t4eclipse.tools.view.MenuAnalyzerView;
 
+@SuppressWarnings("restriction")
 public class MenuUtility {
 
 	private static final String GET_CONFIG_ELEMENT = "getConfigElement";
@@ -224,7 +220,7 @@ public class MenuUtility {
 	private static MenuListener menuListener = new MenuListener() {
 
 		public void menuShown(MenuEvent e) {
-
+			//do nothing
 		}
 
 		public void menuHidden(MenuEvent e) {

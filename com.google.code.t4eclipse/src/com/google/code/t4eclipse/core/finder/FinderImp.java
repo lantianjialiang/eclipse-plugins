@@ -1,9 +1,14 @@
 /*******************************************************************************
- * Copyright (c) 2006 Verigy. All rights reserved.
- *
+ * Copyright (c) 2013 jialiang.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
  * Contributors:
- *     Verigy - initial API and implementation
- *******************************************************************************/
+ *     Ben Xu, xufengbing@gmail.com - initial API and implementation
+ *     jialiang, lantianjialiang@gmail.com - add copy right and fix warning
+ ******************************************************************************/
 package com.google.code.t4eclipse.core.finder;
 
 import java.util.Stack;
@@ -25,7 +30,7 @@ import org.eclipse.swt.widgets.Widget;
 
 /**
  * @author xufengbing
- *
+ * 
  */
 class FinderImp extends Finder {
 
@@ -74,10 +79,10 @@ class FinderImp extends Finder {
 			addStack(c.getMenu());
 		}
 		/**
-		 * widget-->Control-->Scrollable----->Composite---------->Canvas---------->KTable
-		 * *****************************----->List
+		 * widget-->Control-->Scrollable----->Composite---------->Canvas--------
+		 * -->KTable *****************************----->List
 		 * *****************************----->Text
-		 *
+		 * 
 		 */
 		if (w instanceof Scrollable) {
 			addStack(((Scrollable) w).getVerticalBar());
