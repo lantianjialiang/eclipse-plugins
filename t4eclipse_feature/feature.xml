@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="t4eclipse"
-      label="T4eclipse"
+      id="t4eclipse_jl"
+      label="tools for eclipse"
       version="1.3.3">
 
    <description url="http://www.example.com/description">
@@ -29,19 +29,19 @@
          id="XPathTools"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="1.0.2.qualifier"/>
 
    <plugin
          id="Alarm"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="1.0.2.qualifier"/>
 
    <plugin
          id="com.googlecode.t4eclipse"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.3.3.qualifier"
          unpack="false"/>
 
 </feature>
