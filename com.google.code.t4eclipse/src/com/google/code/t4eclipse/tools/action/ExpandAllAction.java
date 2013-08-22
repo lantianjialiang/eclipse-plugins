@@ -23,13 +23,12 @@ public class ExpandAllAction implements IViewActionDelegate {
 
 	private ActivePartControlView view;
 
+	@SuppressWarnings("hiding")
 	public void init(IViewPart view) {
 		if (view != null && view instanceof ActivePartControlView) {
 			ActivePartControlView partView = (ActivePartControlView) view;
 			this.view = partView;
-
 		}
-
 	}
 
 	public void run(IAction action) {
@@ -38,7 +37,7 @@ public class ExpandAllAction implements IViewActionDelegate {
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-
+		//do nothing
 	}
 
 }

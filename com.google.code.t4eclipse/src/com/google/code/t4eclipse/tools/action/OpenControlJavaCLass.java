@@ -14,25 +14,24 @@ package com.google.code.t4eclipse.tools.action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
 import com.google.code.t4eclipse.selection.ControlSelection;
-import com.google.code.t4eclipse.tools.view.ActivePartControlView;
 
 public class OpenControlJavaCLass implements IViewActionDelegate {
 
 	private String className;
 
 	public void init(IViewPart view) {
-
+		//do nothing
 	}
 
 	public void run(IAction action) {
 		OpenJavaTypeAction.openJavaType(this.className);
 	}
 
+	@SuppressWarnings("null")
 	public void selectionChanged(IAction action, ISelection selection) {
 		this.className = "";
 		if (selection instanceof IStructuredSelection) {
@@ -44,8 +43,6 @@ public class OpenControlJavaCLass implements IViewActionDelegate {
 					this.className = mi.getClassName();
 				}
 			}
-
 		}
 	}
-
 }

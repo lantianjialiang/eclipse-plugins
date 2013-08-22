@@ -12,15 +12,12 @@
 package com.google.code.t4eclipse.tools.action;
 
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-import com.google.code.t4eclipse.core.swt.helper.HelperRoot;
 import com.google.code.t4eclipse.core.utility.CommonUIUtility;
 import com.google.code.t4eclipse.selection.ControlSelection;
 
@@ -31,7 +28,7 @@ public class ChangeVisibilityAction implements IObjectActionDelegate {
 	}
 
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-
+		//do nothing
 	}
 
 	public void run(IAction action) {
@@ -42,7 +39,6 @@ public class ChangeVisibilityAction implements IObjectActionDelegate {
 				c.setVisible(true);
 			}
 		}
-
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
@@ -55,7 +51,5 @@ public class ChangeVisibilityAction implements IObjectActionDelegate {
 				this.c = cs.getControl();
 			}
 		}
-	
 	}
-
 }

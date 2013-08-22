@@ -80,6 +80,7 @@ public class LocalToolBarItemModel extends RowModel {
 		}
 		return "";
 	}
+	
 	public String getColClass() {
 
 		String id = getColID();
@@ -97,6 +98,8 @@ public class LocalToolBarItemModel extends RowModel {
 		
 		return "";
 	}
+	
+	@Override
 	public KTableCellRenderer getCellRender(String columName, int col, int row) {
 		if (getColEnabled()) {
 			m_textRenderer.setForeground(Display.getCurrent().getSystemColor(
@@ -109,8 +112,6 @@ public class LocalToolBarItemModel extends RowModel {
 		return m_textRenderer;
 
 	}
-
-
 
 	@Override
 	public int[] getColumLengths() {
@@ -127,10 +128,6 @@ public class LocalToolBarItemModel extends RowModel {
 	  return new String[] { "Open_Class" };
 	}
 
-
-
-
-
 	protected void runMenuOpen_Class(SimpleKTable table, int col, int row) {
 		try {
 			String className = this.getColClass();
@@ -138,6 +135,7 @@ public class LocalToolBarItemModel extends RowModel {
 				new OpenJavaTypeAction(className).run();
 			}
 		} catch (Throwable t) {
+			t.printStackTrace();
 		}
 	}
 }

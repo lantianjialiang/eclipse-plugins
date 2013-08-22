@@ -36,13 +36,14 @@ public class EditorModel extends RowModel {
 		return this.className;
 	}
 
+	@SuppressWarnings("hiding")
 	protected void runMenuOpen_Class(SimpleKTable table, int col, int row) {
 		try {
 			String className = this.getColClass();
 			new OpenJavaTypeAction(className).run();
 
 		} catch (Throwable t) {
-
+			t.printStackTrace();
 		}
 	}
 
@@ -54,7 +55,6 @@ public class EditorModel extends RowModel {
 
 	@Override
 	public String[] getColumNames() {
-
 		return new String[] { "ID", "Class" };
 		// return new String[] { "CatID", "IsShow", "Plugin","Class","ID" };
 	}
@@ -62,7 +62,5 @@ public class EditorModel extends RowModel {
 	@Override
 	public String[] getMenuItemNames() {
 		return new String[] { "Open_Class" };
-
 	}
-
 }

@@ -14,11 +14,9 @@ package com.google.code.t4eclipse.tools.action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PlatformUI;
 
 import com.google.code.t4eclipse.core.utility.MenuUtility;
@@ -34,15 +32,12 @@ public class AnalyzeNextMenuAction implements IViewActionDelegate {
 
 			public void partOpened(IWorkbenchPart part) {
 				// TODO Auto-generated method stub
-
 			}
 
 			public void partDeactivated(IWorkbenchPart part) {
 				if (!(part instanceof MenuAnalyzerView)) {
 					checkMenu = false;
-
 				}
-
 			}
 
 			public void partClosed(IWorkbenchPart part) {
@@ -54,7 +49,7 @@ public class AnalyzeNextMenuAction implements IViewActionDelegate {
 			}
 
 			public void partBroughtToTop(IWorkbenchPart part) {
-
+				//do nothing
 			}
 
 			public void partActivated(IWorkbenchPart part) {
@@ -62,19 +57,17 @@ public class AnalyzeNextMenuAction implements IViewActionDelegate {
 					MenuUtility.removeMenuHideListener(part);
 					MenuUtility.addMenuHideListener(part);
 					checkMenu = true;
-
 				}
-
 			}
 		};
 
 	}
 
+	@SuppressWarnings("unused")
 	private MenuAnalyzerView view;
 
-	public void init(IViewPart view) {
-		this.view = (MenuAnalyzerView) view;
-
+	public void init(IViewPart aView) {
+		this.view = (MenuAnalyzerView) aView;
 	}
 
 	public void run(IAction action) {
@@ -98,7 +91,7 @@ public class AnalyzeNextMenuAction implements IViewActionDelegate {
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
- 
+		//do nothing
 	}
 
 }

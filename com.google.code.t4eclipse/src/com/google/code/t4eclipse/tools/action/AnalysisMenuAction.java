@@ -17,20 +17,14 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import com.google.code.t4eclipse.core.utility.ControlUtility;
 import com.google.code.t4eclipse.selection.ControlSelection;
-import com.google.code.t4eclipse.tools.dialog.AboutT4EclipseDialog;
-import com.google.code.t4eclipse.tools.dialog.MenuAnalyzerDialog;
 import com.google.code.t4eclipse.tools.view.MenuAnalyzerView;
-
 
 public class AnalysisMenuAction implements IObjectActionDelegate {
 	private Control c;
@@ -40,7 +34,7 @@ public class AnalysisMenuAction implements IObjectActionDelegate {
 	}
 
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-
+		//do nothing
 	}
 
 	public void run(IAction action) {

@@ -11,13 +11,10 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.tools.dialog;
 
-import org.eclipse.jface.dialogs.*;
-import org.eclipse.jface.window.IShellProvider;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -28,20 +25,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.IWorkbenchHelpContextIds;
-import org.eclipse.ui.internal.WorkbenchMessages;
 
-import com.google.code.t4eclipse.tools.ktable.SimpleKTable;
-import com.google.code.t4eclipse.tools.ktable.SimpleKTableModel;
-import com.google.code.t4eclipse.tools.ktable.model.ControlAnalysisModel;
 import com.google.code.t4eclipse.tools.utility.ReflctionProvider;
-
-import de.kupzog.ktable.t4eclipse.KTableCellSelectionListener;
 
 public class AnalyzeControlDialog extends Dialog {
 
-	private Object obj;
+	private final Object obj;
 
 	public AnalyzeControlDialog(Shell parentShell, Object c) {
 		super(parentShell);
@@ -53,8 +42,8 @@ public class AnalyzeControlDialog extends Dialog {
 	 
 	}
 
+	@Override
 	protected void configureShell(Shell newShell) {
-
 		super.configureShell(newShell);
 		newShell.setText("About T4Eclipse");
 	
@@ -129,7 +118,7 @@ public class AnalyzeControlDialog extends Dialog {
 		runMethodButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -141,7 +130,6 @@ public class AnalyzeControlDialog extends Dialog {
 							methodComboText);
 					resultText.setText(result);
 				}
-
 			}
 		});
 
@@ -149,8 +137,7 @@ public class AnalyzeControlDialog extends Dialog {
 		getFieldButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -168,6 +155,7 @@ public class AnalyzeControlDialog extends Dialog {
 	}
 
  
+	@Override
 	protected boolean isResizable() {
 		return true;
 	}

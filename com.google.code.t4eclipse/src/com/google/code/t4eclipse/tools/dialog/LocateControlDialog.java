@@ -14,7 +14,6 @@ package com.google.code.t4eclipse.tools.dialog;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -36,6 +35,7 @@ import com.google.code.t4eclipse.tools.utility.Constants;
 
 public class LocateControlDialog extends Dialog {
 
+	@SuppressWarnings("rawtypes")
 	List<Class> list = new ArrayList<Class>();
 
 	public LocateControlDialog(Shell parentShell, Control control) {
@@ -78,6 +78,7 @@ public class LocateControlDialog extends Dialog {
 		dataC1.horizontalSpan = 5;
 
 		final Combo combofind = new Combo(shell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		@SuppressWarnings("rawtypes")
 		List<Class> listfind = new ArrayList<Class>();
 		getParentWidgets(listfind, control);
 
@@ -107,6 +108,7 @@ public class LocateControlDialog extends Dialog {
 
 		checkCode.addListener(SWT.Selection, new Listener() {
 
+			@SuppressWarnings("rawtypes")
 			public void handleEvent(Event event) {
 				int returni = combo.getSelectionIndex();
 				int findi = combofind.getSelectionIndex();
@@ -128,16 +130,17 @@ public class LocateControlDialog extends Dialog {
 		cancel.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
 				shell.dispose();
-
 			}
 		});
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	private String findProgram(Class returnClass, Class findClass,
 			Control control) {
 		Control rootControl = getRootControl(control);
@@ -166,10 +169,9 @@ public class LocateControlDialog extends Dialog {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	private String constructMethod(String type, String id, int index,
 			Class returnClass, Class findClass) {
-
-		//String possibleImportConment = "//the following may needed to add to import part\n\n";
 		String importReturnClass = "import " + returnClass.getName() + ";\n";
 		String importfindClass = returnClass != findClass ? "import "
 				+ findClass.getName() + ";\n\n" : "\n";
@@ -220,6 +222,7 @@ public class LocateControlDialog extends Dialog {
 		return null;
 	}
 
+	@SuppressWarnings({ "hiding", "rawtypes" })
 	private void getParentWidgets(List<Class> list, Control model) {
 		Class c = model.getClass();
 		while (c != Widget.class) {

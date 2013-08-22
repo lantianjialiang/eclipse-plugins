@@ -33,6 +33,7 @@ import org.eclipse.ui.PlatformUI;
  * @see IWorkbenchWindowActionDelegate
  */
 public class ShowSelection implements IWorkbenchWindowActionDelegate {
+	@SuppressWarnings("unused")
 	private IWorkbenchWindow window;
 
 	/**
@@ -47,6 +48,7 @@ public class ShowSelection implements IWorkbenchWindowActionDelegate {
 	 * 
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
+	@SuppressWarnings("rawtypes")
 	public void run(IAction action) {
 		IWorkbenchPart part = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getActivePage().getActivePart();
@@ -56,10 +58,9 @@ public class ShowSelection implements IWorkbenchWindowActionDelegate {
 		if (selectionProvider == null) {
 			System.out.println("no selection provide or this part!");
 			return;
-		} else {
-			System.out.println("the selection provide is:"
-					+ selectionProvider.getClass().getName());
 		}
+		
+		System.out.println("the selection provide is:" + selectionProvider.getClass().getName());
 
 		ISelection selection = selectionProvider.getSelection();
 
@@ -77,10 +78,7 @@ public class ShowSelection implements IWorkbenchWindowActionDelegate {
 			while (iterator.hasNext()) {
 				System.out.println(iterator.next().getClass().getName());
 			}
-		}
-
-		else {
-
+		} else {
 			System.out.println("commmon  selection:"
 					+ selection.getClass().getName());
 
@@ -99,7 +97,6 @@ public class ShowSelection implements IWorkbenchWindowActionDelegate {
 					System.out.println(" segament " + i + " :"
 							+ segment.getClass().getName() + " " + segment);
 				}
-
 			}
 		}
 	}
@@ -112,6 +109,7 @@ public class ShowSelection implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#selectionChanged
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
+		//do nothing
 	}
 
 	/**
@@ -121,6 +119,7 @@ public class ShowSelection implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#dispose
 	 */
 	public void dispose() {
+		//do nothing
 	}
 
 	/**
@@ -129,6 +128,7 @@ public class ShowSelection implements IWorkbenchWindowActionDelegate {
 	 * 
 	 * @see IWorkbenchWindowActionDelegate#init
 	 */
+	@SuppressWarnings("hiding")
 	public void init(IWorkbenchWindow window) {
 		this.window = window;
 	}

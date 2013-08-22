@@ -32,7 +32,7 @@ import org.eclipse.swt.widgets.Text;
  */
 public class InternalErrorDialog extends MessageDialog {
 
-	private Throwable detail;
+	private final Throwable detail;
 
 	private int detailButtonID = -1;
 
@@ -79,6 +79,7 @@ public class InternalErrorDialog extends MessageDialog {
 
 	// Workaround. SWT does not seem to set rigth the default button if
 	// there is not control with focus. Bug: 14668
+	@Override
 	public int open() {
 		create();
 		Button b = getButton(defaultButtonIndex);
@@ -100,6 +101,7 @@ public class InternalErrorDialog extends MessageDialog {
 	/*
 	 * (non-Javadoc) Method declared on Dialog.
 	 */
+	@Override
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == detailButtonID) {
 			toggleDetailsArea();
@@ -154,6 +156,7 @@ public class InternalErrorDialog extends MessageDialog {
 			baos.flush();
 			text.setText(baos.toString());
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL

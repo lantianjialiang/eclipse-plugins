@@ -12,10 +12,7 @@
 package com.google.code.t4eclipse.tools.ktable;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.PlatformUI;
@@ -48,9 +45,8 @@ public class SimpleKTable extends KTable {
 
 					disposeAllMenuItem();
 					if (row == 0 || col == 0) {
-
+						//do nothing
 					} else {
-
 						addMenuItem(col, row);
 					}
 				}
@@ -70,13 +66,13 @@ public class SimpleKTable extends KTable {
 	}
 
 	// this mehtod add a menu item to the KTable.
+	@SuppressWarnings("rawtypes")
 	public void addMenuItem(int col, int row) {
 
 		KTableModel model = this.getModel();
 		if (model != null && model instanceof SimpleKTableModel) {
 			SimpleKTableModel smodel = (SimpleKTableModel) model;
 			smodel.addSimpelKTableMenuItem(this, col, row);
-
 		}
 	}
 

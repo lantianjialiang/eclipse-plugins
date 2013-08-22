@@ -13,16 +13,14 @@ package com.google.code.t4eclipse.tools.ktable.model;
 
 
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceNode;
-import org.eclipse.ui.wizards.IWizardDescriptor;
 
 import com.google.code.t4eclipse.core.eclipse.helper.EclipsePrefHelper;
-import com.google.code.t4eclipse.core.eclipse.helper.EclipseWizardHelper;
 import com.google.code.t4eclipse.tools.action.OpenJavaTypeAction;
 import com.google.code.t4eclipse.tools.ktable.RowModel;
 import com.google.code.t4eclipse.tools.ktable.SimpleKTable;
 
+@SuppressWarnings("restriction")
 public class PerferenceModel extends RowModel {
 
 	public PerferenceModel(WorkbenchPreferenceNode o) {
@@ -70,11 +68,11 @@ public class PerferenceModel extends RowModel {
 		 try {
 			String className =this.getColClass();
 			new OpenJavaTypeAction(className).run();
-
 		} catch (Throwable t) {
-
+			t.printStackTrace();
 		}
 	}
+	
 	@Override
 	public int[] getColumLengths() {
 		return new int[] {200, 200 };

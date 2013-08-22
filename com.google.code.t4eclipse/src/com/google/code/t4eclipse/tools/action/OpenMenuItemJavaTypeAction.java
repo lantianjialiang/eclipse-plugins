@@ -18,15 +18,11 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
-import com.google.code.t4eclipse.selection.ControlSelection;
-import com.google.code.t4eclipse.tools.view.ActivePartControlView;
-import com.google.code.t4eclipse.tools.view.MenuAnalyzerView;
-
 public class OpenMenuItemJavaTypeAction implements IViewActionDelegate {
 	private String className;
 
 	public void init(IViewPart view) {
-
+		//do nothing
 	}
 
 	public void run(IAction action) {
@@ -45,8 +41,6 @@ public class OpenMenuItemJavaTypeAction implements IViewActionDelegate {
 					this.className = str;
 				}
 			}
-
 		}
 	}
-
 }

@@ -14,9 +14,7 @@ package com.google.code.t4eclipse.tools.ktable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Display;
 
 import de.kupzog.ktable.t4eclipse.KTableCellEditor;
 import de.kupzog.ktable.t4eclipse.KTableCellRenderer;
@@ -37,11 +35,12 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 
 	private List<T> rowModelList = null;
 
+	@SuppressWarnings("static-access")
 	private final FixedCellRenderer m_fixedRenderer = new FixedCellRenderer(
 			FixedCellRenderer.STYLE_FLAT
 					| TextCellRenderer.INDICATION_FOCUS_ROW);
 
-	private T instance;
+	private final T instance;
 
 	/**
 	 * Initialize the base implementation.
@@ -99,6 +98,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 		}
 	}
 
+	@SuppressWarnings("hiding")
 	private T createInstance(Class<T> clazz) {
 		T instance;
 		try {
@@ -115,6 +115,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 		return rowModelList.get(rol - 1);
 	}
 
+	@Override
 	public Object doGetContentAt(int col, int row) {
 		try {
 
@@ -147,6 +148,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 	/*
 	 * overridden from superclass
 	 */
+	@Override
 	public KTableCellEditor doGetCellEditor(int col, int row) {
 
 		return new KTableCellEditorText();
@@ -156,10 +158,13 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 	/*
 	 * overridden from superclass
 	 */
+	@Override
 	public void doSetContentAt(int col, int row, Object value) {
+		//do nothing
 	}
 
 	// Table size:
+	@Override
 	public int doGetRowCount() {
 
 		return this.rowModelList.size() + 1;
@@ -169,6 +174,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 		return 1;
 	}
 
+	@Override
 	public int doGetColumnCount() {
 		return this.instance.getColumNames().length + 1;
 	}
@@ -210,6 +216,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 	}
 
 	// Rendering
+	@Override
 	public KTableCellRenderer doGetCellRenderer(int col, int row) {
 		if (isFixedCell(col, row))
 			return m_fixedRenderer;
@@ -223,6 +230,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 	 *
 	 * @see de.kupzog.ktable.KTableModel#belongsToCell(int, int)
 	 */
+	@Override
 	public Point doBelongsToCell(int col, int row) {
 		// no cell spanning:
 		return null;
@@ -233,6 +241,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 	 *
 	 * @see de.kupzog.ktable.KTableDefaultModel#getInitialColumnWidth(int)
 	 */
+	@Override
 	public int getInitialColumnWidth(int column) {
 		if (column == 0)
 			return 40;
@@ -244,6 +253,7 @@ public class SimpleKTableModel<T extends RowModel> extends KTableDefaultModel {
 	 *
 	 * @see de.kupzog.ktable.KTableDefaultModel#getInitialRowHeight(int)
 	 */
+	@Override
 	public int getInitialRowHeight(int row) {
 		if (row == 0)
 			return 30;

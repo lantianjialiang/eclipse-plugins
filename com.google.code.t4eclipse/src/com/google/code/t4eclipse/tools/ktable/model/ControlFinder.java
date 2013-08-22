@@ -36,7 +36,6 @@ class ControlFinder {
 					s.push(controls[i]);
 				}
 			}
-
 		}
 	}
 

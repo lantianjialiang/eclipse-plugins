@@ -21,18 +21,14 @@ import com.google.code.t4eclipse.tools.utility.MainViewTabUtility;
 public class TabActivePartAction implements IViewActionDelegate {
 
 	public void init(IViewPart view) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	public void run(IAction action) {
 		MainViewTabUtility.showTabInT4EclipseView("ActivePart");
-		
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-		
-
+		//do nothing
 	}
-
 }

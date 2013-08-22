@@ -12,12 +12,8 @@
 package com.google.code.t4eclipse.tools.ktable.model;
 
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IPerspectiveDescriptor;
-import org.eclipse.ui.views.IViewDescriptor;
-import org.eclipse.ui.wizards.IWizardDescriptor;
 
-import com.google.code.t4eclipse.core.eclipse.helper.EclipsePrefHelper;
 import com.google.code.t4eclipse.core.eclipse.helper.EclipseWorkPartHelper;
 import com.google.code.t4eclipse.tools.action.OpenJavaTypeAction;
 import com.google.code.t4eclipse.tools.ktable.RowModel;
@@ -28,7 +24,6 @@ public class PerspectiveModel extends RowModel {
 
 	public PerspectiveModel(IPerspectiveDescriptor o) {
 		super(o);
-		// TODO Auto-generated constructor stub
 	}
 
 	public PerspectiveModel() {
@@ -72,6 +67,7 @@ public class PerspectiveModel extends RowModel {
 			}
 
 		} catch (Throwable t) {
+			t.printStackTrace();
 		}
 	}
 
@@ -87,7 +83,6 @@ public class PerspectiveModel extends RowModel {
 
 	@Override
 	public String[] getMenuItemNames() {
-		// TODO Auto-generated method stub
 		return new String[] { "Open_Perspective", "Open_Class" };
 	}
 }

@@ -32,14 +32,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 import com.google.code.t4eclipse.tools.utility.ImageUtility;
-//import org.eclipse.ui.internal.about.AboutTextManager;
 
 public class AboutT4EclipseDialog extends Dialog {
-//	private AboutItem item;
 
 	public AboutT4EclipseDialog(Shell parentShell) {
 		super(parentShell);
-//		item = AboutTextManager.scan(this.getT4EclipseDescriptionText());
 	}
 
 	@Override
@@ -89,9 +86,6 @@ public class AboutT4EclipseDialog extends Dialog {
 		text.setCursor(null);
 		text.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-//		AboutTextManager aboutTextManager = new AboutTextManager(text);
-//		aboutTextManager.setItem(item);
-
 		applyDialogFont(parent);
 		return parent;
 	}
@@ -100,7 +94,6 @@ public class AboutT4EclipseDialog extends Dialog {
 		StyleRange style = new StyleRange();
 		style.start = offset;
 		style.length = 1;
-//		style.data = image;
 		Rectangle rect = image.getBounds();
 		style.metrics = new GlyphMetrics(rect.height, 0, rect.width);
 		styledText.setStyleRange(style);

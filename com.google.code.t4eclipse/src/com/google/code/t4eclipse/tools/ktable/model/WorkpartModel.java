@@ -11,7 +11,6 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.tools.ktable.model;
 
-
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
@@ -45,6 +44,8 @@ public class WorkpartModel extends RowModel {
 		super();
 	}
 
+	@SuppressWarnings("static-access")
+	@Override
 	public KTableCellRenderer getCellRender(String columName, int col, int row) {
 		if (!chechHasChild()) {
 			m_textRenderer = new TextCellRenderer(
@@ -126,10 +127,10 @@ public class WorkpartModel extends RowModel {
 		while (tmp != null) {
 			if (tmp.getData(Constants.rootControlIDName) != null) {
 				break;
-			} else {
-				tmp = tmp.getParent();
-				num++;
 			}
+
+			tmp = tmp.getParent();
+			num++;
 
 		}
 		return num;
@@ -138,9 +139,9 @@ public class WorkpartModel extends RowModel {
 	public String getClassName() {
 		if (this.control != null && !this.control.isDisposed()) {
 			return this.control.getClass().getName();
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	// the Class Name column
@@ -235,34 +236,33 @@ public class WorkpartModel extends RowModel {
 	protected void runMenuAnalysis(SimpleKTable table, int col, int row) {
 		this.control.getDisplay().setData(Constants.TABFOLDER_DATA_NAME,
 				this.control);
-	 
-	 
-	 String title="Analysis Control";
-	 String message="Input information message for this control";
-	 String proposal="";
-	 
-	    IInputValidator inputValidator = new IInputValidator() {
-            public String isValid(String newText) {
-                return (newText == null || newText.trim().length() == 0) ? " " : null; //$NON-NLS-1$
-            }
-        };
-        InputDialog dialog = new InputDialog(Display.getDefault().getActiveShell(), title, message, proposal,
-                inputValidator);
-        if (dialog.open() != Window.CANCEL) {
-            String name = dialog.getValue();
-            if (name != null&& name.length()>0) {
-            	//get name   
-            	name = name.trim();
-            	
-            	ControlAnalysisModel model=new ControlAnalysisModel(this.control,name);
+
+		String title = "Analysis Control";
+		String message = "Input information message for this control";
+		String proposal = "";
+
+		IInputValidator inputValidator = new IInputValidator() {
+			public String isValid(String newText) {
+				return (newText == null || newText.trim().length() == 0) ? " " : null; //$NON-NLS-1$
+			}
+		};
+		InputDialog dialog = new InputDialog(Display.getDefault()
+				.getActiveShell(), title, message, proposal, inputValidator);
+		if (dialog.open() != Window.CANCEL) {
+			String name = dialog.getValue();
+			if (name != null && name.length() > 0) {
+				// get name
+				name = name.trim();
+
+				ControlAnalysisModel model = new ControlAnalysisModel(
+						this.control, name);
 				MainView.getMainSWT().addToAnalysisControlTable(model);
 				MainViewTabUtility.showTabInT4EclipseView("Control");
-            	
-                   	 
+
 			}
-         
-        }
-		
+
+		}
+
 	}
 
 	protected void runMenuVisiable(SimpleKTable table, int col, int row) {
@@ -273,10 +273,11 @@ public class WorkpartModel extends RowModel {
 
 	@Override
 	public String[] getMenuItemNames() {
-	//	return new String[] { "Find", "Visiable", "Analysis" };
-		return new String[] {"Visiable", "Analysis" };
+		// return new String[] { "Find", "Visiable", "Analysis" };
+		return new String[] { "Visiable", "Analysis" };
 	}
 
+	@Override
 	public int getRowHeight() {
 		return 30;
 	}

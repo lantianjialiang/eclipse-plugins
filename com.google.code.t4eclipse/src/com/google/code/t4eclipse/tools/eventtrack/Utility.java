@@ -29,6 +29,7 @@ import com.google.code.t4eclipse.Activator;
 import com.google.code.t4eclipse.tools.view.MainView;
 
 
+@SuppressWarnings("boxing")
 public class Utility {
 
 	public static HashMap<Integer, String> eventMap = new HashMap<Integer, String>();
@@ -83,7 +84,6 @@ public class Utility {
 					eventMap.get(eventcode))) {
 				display.addFilter(eventcode, listener);
 				events.add(eventcode);
-
 			}
 		}
 	}
@@ -108,7 +108,6 @@ public class Utility {
 						+ event.button + " mask:" + event.stateMask + " ::: "
 						+ event.widget.getClass().getName() + "::::"
 						+ event.toString();
-
 			}
 
 			return "Event::" + getEventType(event.type) + " ::: "
@@ -122,6 +121,7 @@ public class Utility {
 
 	public static boolean[] lock = new boolean[1];
 
+	@SuppressWarnings({ "static-access", "null" })
 	public static void addStrToText(Event event) {
 		String str = getEventString(event);
 		Text text = MainView.getMainSWT().texts[1];
@@ -141,11 +141,11 @@ public class Utility {
 			i++;
 		}
 
-		if (i == 0)
+		if (i == 0) {
 			return textStr;
-		else
-			return textStr.substring(i - 1);
-
+		}
+		
+		return textStr.substring(i - 1);
 	}
 
 	public static boolean filter(Event event) {

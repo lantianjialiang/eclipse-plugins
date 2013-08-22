@@ -21,7 +21,6 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.google.code.t4eclipse.selection.ControlSelection;
-import com.google.code.t4eclipse.tools.dialog.AboutT4EclipseDialog;
 import com.google.code.t4eclipse.tools.dialog.AnalyzeControlDialog;
 
 public class AnalyzeControlAction implements IObjectActionDelegate {
@@ -32,7 +31,7 @@ public class AnalyzeControlAction implements IObjectActionDelegate {
 	}
 
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-
+		//do nothing
 	}
 
 	public void run(IAction action) {

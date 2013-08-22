@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.registry.IWorkbenchRegistryConstants;
 
+@SuppressWarnings("restriction")
 public class EclipseExtentionInfoProvider {
 
 	/**
@@ -65,8 +66,6 @@ public class EclipseExtentionInfoProvider {
 		return returnStr;
 	}
 
-	// PL_PREFERENCES
-
 	public static String[] getPrefPageClass(String id) {
 		return getPluginInfo(id, IWorkbenchRegistryConstants.PL_PREFERENCES);
 	}
@@ -79,7 +78,6 @@ public class EclipseExtentionInfoProvider {
 		return getPluginInfo(id, IWorkbenchRegistryConstants.PL_VIEWS);
 	}
 
-	// PL_PERSPECTIVES
 	public static String[] getPerspectiveClass(String id) {
 		return getPluginInfo(id, IWorkbenchRegistryConstants.PL_PERSPECTIVES);
 	}

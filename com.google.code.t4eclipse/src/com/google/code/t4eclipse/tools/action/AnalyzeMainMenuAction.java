@@ -18,7 +18,6 @@ import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.menus.MenuUtil;
 
 import com.google.code.t4eclipse.core.utility.MenuUtility;
 import com.google.code.t4eclipse.tools.view.MenuAnalyzerView;
@@ -41,12 +40,12 @@ public class AnalyzeMainMenuAction implements IViewActionDelegate {
 				ma.update(mainMenu);
 			}
 		} catch (PartInitException e) {
+			e.printStackTrace();
 		}
-
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-
+		//do nothing
 	}
 
 	public void init(IViewPart view) {

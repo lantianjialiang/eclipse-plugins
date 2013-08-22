@@ -19,6 +19,7 @@ import com.google.code.t4eclipse.tools.ktable.SimpleKTableModel;
 
 import de.kupzog.ktable.t4eclipse.KTableCellRenderer;
 
+@SuppressWarnings("hiding")
 public class ControlAnalysisModel extends RowModel {
 	Object object;
 
@@ -34,6 +35,7 @@ public class ControlAnalysisModel extends RowModel {
 		return new String[] { "Type", "Info" };
 	}
 
+	@Override
 	public Object getObject(){
 		return this.object;
 	}
@@ -49,50 +51,34 @@ public class ControlAnalysisModel extends RowModel {
 	public String getColType() {
 		if (this.object == null) {
 			return "null";
-		} else {
-			if (this.object instanceof Control) {
-				Control c = (Control) this.object;
-				if (c.isDisposed()) {
-					return "disposed:" + this.object.getClass().getSimpleName();
-				}
-			}
-			return this.object.getClass().getSimpleName();
 		}
+
+		if (this.object instanceof Control) {
+			Control c = (Control) this.object;
+			if (c.isDisposed()) {
+				return "disposed:" + this.object.getClass().getSimpleName();
+			}
+		}
+		return this.object.getClass().getSimpleName();
 	}
 
 	public String getColInfo() {
 		return this.info == null ? "null" : this.info;
 	}
 
+	@Override
 	public KTableCellRenderer getCellRender(String columName, int col, int row) {
-		// if (this.top) {
-		// m_textRenderer.setBackground(Display.getCurrent().getSystemColor(
-		// SWT.COLOR_YELLOW));
-		// m_textRenderer.setForeground(Display.getCurrent().getSystemColor(
-		// SWT.COLOR_BLACK));
-		//
-		// } else if (this.separator||this.group) {
-		// m_textRenderer.setBackground(Display.getCurrent().getSystemColor(
-		// SWT.COLOR_GRAY));
-		// m_textRenderer.setForeground(Display.getCurrent().getSystemColor(
-		// SWT.COLOR_BLACK));
-		// } else {
-		// m_textRenderer.setBackground(Display.getCurrent().getSystemColor(
-		// SWT.COLOR_WHITE));
-		// m_textRenderer.setForeground(Display.getCurrent().getSystemColor(
-		// SWT.COLOR_BLACK));
-		// }
 		return m_textRenderer;
 
 	}
 
 	protected void runMenuAnalysis(SimpleKTable table, int col, int row) {
 		//transfer this object to the MainView?
-		
 	}
 	
 	
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void runMenuDelete(SimpleKTable table, int col, int row) {
 		SimpleKTableModel  model=(SimpleKTableModel) table.getModel();
 		model.deleteTableRow(this);
@@ -101,14 +87,13 @@ public class ControlAnalysisModel extends RowModel {
 	
 
 
+	@SuppressWarnings("rawtypes")
 	protected void runMenuClear(SimpleKTable table, int col, int row) {
 		SimpleKTableModel  model=(SimpleKTableModel) table.getModel();
 		model.clearTableRow();
 		table.redraw();
 	}
 	
-
-
 	@Override
 	public String[] getMenuItemNames() {
 		return new String[] { "Delete", "Clear" };

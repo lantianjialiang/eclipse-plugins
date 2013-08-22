@@ -13,7 +13,6 @@ package com.google.code.t4eclipse.tools.action;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
@@ -24,13 +23,12 @@ public class AnalyzeAllControlAction implements IViewActionDelegate {
 
 	private ActivePartControlView view;
 
+	@SuppressWarnings("hiding")
 	public void init(IViewPart view) {
 		if (view != null && view instanceof ActivePartControlView) {
 			ActivePartControlView partView = (ActivePartControlView) view;
 			this.view = partView;
-
 		}
-
 	}
 
 	public void run(IAction action) {
@@ -40,7 +38,7 @@ public class AnalyzeAllControlAction implements IViewActionDelegate {
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-
+		//do nothing
 	}
 
 }

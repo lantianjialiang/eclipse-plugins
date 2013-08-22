@@ -13,7 +13,6 @@ package com.google.code.t4eclipse.tools.dialog;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -25,7 +24,6 @@ public class MenuAnalyzerDialog extends Dialog {
 
 	public MenuAnalyzerDialog(Shell parentShell) {
 		super(parentShell);
-//		setShellStyle(getShellStyle() ^ SWT.APPLICATION_MODAL | SWT.MODELESS);
 		setBlockOnOpen(false);
 	}
 

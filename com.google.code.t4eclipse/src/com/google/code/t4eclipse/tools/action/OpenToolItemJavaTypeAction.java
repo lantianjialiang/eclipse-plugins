@@ -22,7 +22,7 @@ public class OpenToolItemJavaTypeAction implements IViewActionDelegate {
 	private String className;
 
 	public void init(IViewPart view) {
-
+		//do nothing
 	}
 
 	public void run(IAction action) {
@@ -41,8 +41,6 @@ public class OpenToolItemJavaTypeAction implements IViewActionDelegate {
 					this.className = str;
 				}
 			}
-
 		}
 	}
-
 }

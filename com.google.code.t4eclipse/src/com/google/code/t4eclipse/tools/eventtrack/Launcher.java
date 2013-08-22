@@ -23,10 +23,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("boxing")
 public class Launcher {
-    private Shell shell;
+    private final Shell shell;
 
-    private Map<Integer, String> eventMap = new Hashtable<Integer, String>();
+    private final Map<Integer, String> eventMap = new Hashtable<Integer, String>();
     {
         eventMap.put(SWT.Paint, "Paint");
         eventMap.put(SWT.Selection, "Selection");
@@ -61,10 +62,9 @@ public class Launcher {
         eventMap.put(SWT.Traverse, "Traverse");
     }
 
-    private Listener uniListener = new Listener() {
+    private final Listener uniListener = new Listener() {
         public void handleEvent(Event event) {
-            String eventName = eventMap.get(event.type);
-          
+            //String eventName = eventMap.get(event.type);
         }
     };
 
@@ -90,7 +90,8 @@ public class Launcher {
         button.setText("Cool Button");
         button
                 .addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-                    public void widgetSelected(
+                    @Override
+					public void widgetSelected(
                             org.eclipse.swt.events.SelectionEvent e) {
                         MessageBox messageBox = new MessageBox(shell);
                         messageBox.setMessage("Pressed");

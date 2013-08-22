@@ -11,14 +11,8 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.tools.ktable.model;
 
-import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.jface.action.IContributionManager;
-import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Item;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 
 import com.google.code.t4eclipse.tools.ktable.RowModel;
 
@@ -81,6 +75,7 @@ public class MainMenuItemModel extends RowModel {
 		return this.group ? "Y" : "";
 	}
 
+	@Override
 	public KTableCellRenderer getCellRender(String columName, int col, int row) {
 		if (this.top) {
 			m_textRenderer.setBackground(Display.getCurrent().getSystemColor(

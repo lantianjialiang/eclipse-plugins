@@ -22,11 +22,11 @@ import com.google.code.t4eclipse.tools.view.MainView;
 public class OpenViewAction implements IWorkbenchWindowActionDelegate {
 
 	public void dispose() {
-		// TODO Auto-generated method stub
+		//do nothing
 	}
 
 	public void init(IWorkbenchWindow window) {
-		// TODO Auto-generated method stub
+		//do nothing
 	}
 
 	public void run(IAction action) {
@@ -35,7 +35,7 @@ public class OpenViewAction implements IWorkbenchWindowActionDelegate {
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-
+		//do nothing
 	}
 
 }

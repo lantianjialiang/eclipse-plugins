@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceNode;
 import org.eclipse.ui.views.IViewCategory;
 import org.eclipse.ui.views.IViewDescriptor;
 
@@ -37,7 +36,6 @@ public class ViewModel extends RowModel {
 
 	public ViewModel(IViewDescriptor o) {
 		super(o);
-		// TODO Auto-generated constructor stub
 	}
 
 	public ViewModel() {
@@ -69,6 +67,8 @@ public class ViewModel extends RowModel {
 		return EclipseExtentionInfoProvider.getViewClass(id)[1];
 	}
 
+	@SuppressWarnings("static-access")
+	@Override
 	public KTableCellRenderer getCellRender(String columName, int col, int row) {
 
 		m_textRenderer = new TextCellRenderer(TextCellRenderer.INDICATION_FOCUS);
@@ -76,8 +76,8 @@ public class ViewModel extends RowModel {
 			m_textRenderer.setBackground(Display.getDefault().getSystemColor(
 					SWT.COLOR_WIDGET_LIGHT_SHADOW));
 		}
+		
 		return m_textRenderer;
-
 	}
 
 	public boolean getColIsShow() {
@@ -90,7 +90,6 @@ public class ViewModel extends RowModel {
 				
 				isShow = true;
 			}
-
 		}
 		return isShow;
 	}
@@ -143,7 +142,7 @@ public class ViewModel extends RowModel {
 			new OpenJavaTypeAction(className).run();
 
 		} catch (Throwable t) {
-
+			t.printStackTrace();
 		}
 	}
 
@@ -155,7 +154,6 @@ public class ViewModel extends RowModel {
 
 	@Override
 	public String[] getColumNames() {
-
 		return new String[] { "CatID", "Class", "ID" };
 		// return new String[] { "CatID", "IsShow", "Plugin","Class","ID" };
 	}
@@ -164,7 +162,6 @@ public class ViewModel extends RowModel {
 	public String[] getMenuItemNames() {
 		return new String[] { "Open_View", "Show_View_Local_ToolBar",
 				"Open_Class" };
-
 	}
 
 }

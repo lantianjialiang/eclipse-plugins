@@ -22,24 +22,19 @@ public class ShowToolBarAnalyzerAction implements
 		IWorkbenchWindowActionDelegate {
 
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	public void init(IWorkbenchWindow window) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	public void run(IAction action) {
 		EclipseCommonUtility
 		.showView("com.google.code.t4eclipse.tools.view.ToolBarAnalyzerView");
-
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
-
 }

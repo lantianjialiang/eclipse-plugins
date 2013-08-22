@@ -91,6 +91,7 @@ public class MainToolBarItemModel extends RowModel {
 		return "";
 	}
 
+	@Override
 	public KTableCellRenderer getCellRender(String columName, int col, int row) {
 		if (getColEnabled()) {
 			m_textRenderer.setForeground(Display.getCurrent().getSystemColor(
@@ -101,7 +102,6 @@ public class MainToolBarItemModel extends RowModel {
 		}
 
 		return m_textRenderer;
-
 	}
 
 	@Override
@@ -125,6 +125,7 @@ public class MainToolBarItemModel extends RowModel {
 				new OpenJavaTypeAction(className).run();
 			}
 		} catch (Throwable t) {
+			t.printStackTrace();
 		}
 	}
 }

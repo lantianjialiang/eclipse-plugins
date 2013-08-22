@@ -23,8 +23,7 @@ import com.google.code.t4eclipse.tools.view.MainView;
 public class RefreshMainViewAction implements IViewActionDelegate {
 
 	public void run(IAction action) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
@@ -33,13 +32,10 @@ public class RefreshMainViewAction implements IViewActionDelegate {
 		if (part != null && part instanceof MainView) {
 			MainView m = (MainView) part;
 			m.updateView();
-
 		}
 	}
 
 	public void init(IViewPart view) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
-
 }

@@ -12,10 +12,6 @@
 package com.google.code.t4eclipse.tools.ktable.model;
 
 
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.wizards.IWizardDescriptor;
-
-import com.google.code.t4eclipse.core.eclipse.helper.EclipseWizardHelper;
 import com.google.code.t4eclipse.tools.action.OpenJavaTypeAction;
 import com.google.code.t4eclipse.tools.ktable.RowModel;
 import com.google.code.t4eclipse.tools.ktable.SimpleKTable;
@@ -24,11 +20,11 @@ import com.google.code.t4eclipse.tools.utility.ShellListnerChecker;
 
 public class ShellInfoModel extends RowModel {
 
-	private String shellDataName;
+	private final String shellDataName;
 
-	private String shellTitle;
+	private final String shellTitle;
 
-	private String info;
+	private final String info;
 
 	public ShellInfoModel(String shellDataName, String shellTitle) {
 		super();
@@ -58,7 +54,6 @@ public class ShellInfoModel extends RowModel {
 
 	@Override
 	public String[] getColumNames() {
-		// TODO Auto-generated method stub
 		// return new String[] { "GroupID", "WizardID","Plugin","Class" };
 		return new String[] { "Class", "Title", "Info" };
 	}
@@ -96,16 +91,14 @@ public class ShellInfoModel extends RowModel {
 						className=this.info.substring(start+7,end);
 					}
 
-
 			}
 
 			new OpenJavaTypeAction(className).run();
 		} catch (Throwable t) {
-
+			t.printStackTrace();
 		}
 		finally{
 			ShellListnerChecker.setCheck(oldvalue);
-
 		}
 	}
 }

@@ -27,29 +27,15 @@ public class MemoryCheckAction implements IWorkbenchWindowActionDelegate {
 	private long total;
 	private long max;
 
-	// private Label pre;
-	// private Label cur;
-	// private StatusLineManager manager;
 	public void dispose() {
-
+		//do nothing
 	}
 
 	public void init(IWorkbenchWindow window) {
-		// WorkbenchWindow windows =
-		// ((WorkbenchWindow)PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-		// manager = windows.getStatusLineManager();
-		// Composite status=(Composite) manager.getControl();
-		// this.pre=new Label(status,SWT.NULL);
-		// this.cur=new Label(status,SWT.NULL);
-
+		//do nothing
 	}
 
 	public void run(IAction action) {
-		// this.pre.setText("xxxxxxxxxxx");
-		// this.cur.setText("qqqqqqqqqqqqqqqqqqqqqqqqqqq");
-		// manager.markDirty();
-		// manager.update(true);
-		Runtime.getRuntime().gc();
 		long freeM = Runtime.getRuntime().freeMemory();
 		long totalM = Runtime.getRuntime().totalMemory();
 		long maxM = Runtime.getRuntime().maxMemory();
@@ -70,7 +56,6 @@ public class MemoryCheckAction implements IWorkbenchWindowActionDelegate {
 					Display.getDefault().getActiveShell(),
 					"Memory Status Report", begin + end + changed);
 		}
-
 	}
 
 	private String getAllStatus(long totalM, long freeM, long maxM) {
@@ -88,8 +73,7 @@ public class MemoryCheckAction implements IWorkbenchWindowActionDelegate {
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 }

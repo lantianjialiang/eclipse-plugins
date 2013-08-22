@@ -16,18 +16,15 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import com.google.code.t4eclipse.core.utility.MenuUtility;
 import com.google.code.t4eclipse.tools.utility.EclipseCommonUtility;
 import com.google.code.t4eclipse.tools.view.ActivePartControlView;
-import com.google.code.t4eclipse.tools.view.MenuAnalyzerView;
 
 public class AutoSyncActivePartAction implements IViewActionDelegate {
 
+	@SuppressWarnings("unused")
 	private ActivePartControlView view;
 	private static IPartListener partListener;
 	static {
@@ -35,19 +32,19 @@ public class AutoSyncActivePartAction implements IViewActionDelegate {
 		partListener = new IPartListener() {
 
 			public void partOpened(IWorkbenchPart part) {
-
+				//do nothing
 			}
 
 			public void partDeactivated(IWorkbenchPart part) {
-
+				//do nothing
 			}
 
 			public void partClosed(IWorkbenchPart part) {
-
+				//do nothing
 			}
 
 			public void partBroughtToTop(IWorkbenchPart part) {
-
+				//do nothing
 			}
 
 			public void partActivated(IWorkbenchPart part) {
@@ -59,21 +56,18 @@ public class AutoSyncActivePartAction implements IViewActionDelegate {
 						ActivePartControlView ac = (ActivePartControlView) v;
 						ac.showAcitivePart(part);
 					}
-
 				}
-
 			}
 		};
 
 	}
 
+	@SuppressWarnings("hiding")
 	public void init(IViewPart view) {
 		if (view != null && view instanceof ActivePartControlView) {
 			ActivePartControlView partView = (ActivePartControlView) view;
 			this.view = partView;
-
 		}
-
 	}
 
 	public void run(IAction action) {
@@ -90,7 +84,7 @@ public class AutoSyncActivePartAction implements IViewActionDelegate {
 	}
 
 	public void selectionChanged(IAction action, ISelection selection) {
-
+		//do nothing
 	}
 
 	public static IPartListener getAutoSyncPartListener() {

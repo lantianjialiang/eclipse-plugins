@@ -13,7 +13,6 @@ package com.google.code.t4eclipse.tools.action;
 
 
 import org.eclipse.jface.action.IAction;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -28,6 +27,7 @@ public class UpdataTabsAction extends ActionDelegate implements
 	/**
 	 * @see ActionDelegate#run(IAction)
 	 */
+	@Override
 	public void run(IAction action) {
 
 		IWorkbenchPart part = PlatformUI.getWorkbench()
@@ -35,15 +35,13 @@ public class UpdataTabsAction extends ActionDelegate implements
 		if (part != null && part instanceof MainView) {
 			MainView m = (MainView) part;
 			m.updateView();
-
 		}
-
 	}
 
 	/**
 	 * @see IViewActionDelegate#init(IViewPart)
 	 */
 	public void init(IViewPart view) {
+		//do nothing
 	}
-
 }

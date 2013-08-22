@@ -60,6 +60,7 @@ import com.google.code.t4eclipse.core.eclipse.helper.EclipseWorkPartHelper;
 import com.google.code.t4eclipse.core.utility.ControlUtility;
 import com.google.code.t4eclipse.tools.ktable.RowModel;
 
+@SuppressWarnings("restriction")
 public class EclipseModelDataProvider {
 
 	private static EclipseModelDataProvider instance;
@@ -114,7 +115,7 @@ public class EclipseModelDataProvider {
 						} else {
 							MainMenuItemModel sepModel = new MainMenuItemModel();
 							sepModel.top = false;
-							sepModel.separator = agm.isSeparator();;
+							sepModel.separator = agm.isSeparator();
 							sepModel.group = false;
 							list.add(sepModel);
 						}
@@ -134,7 +135,7 @@ public class EclipseModelDataProvider {
 							} else {
 								MainMenuItemModel sepModel = new MainMenuItemModel();
 								sepModel.top = false;
-								sepModel.separator = agm.isSeparator();;
+								sepModel.separator = agm.isSeparator();
 								sepModel.group = false;
 								list.add(sepModel);
 							}
@@ -188,7 +189,7 @@ public class EclipseModelDataProvider {
 							} else {
 								MainMenuItemModel sepModel = new MainMenuItemModel();
 								sepModel.top = false;
-								sepModel.separator = agm.isSeparator();;
+								sepModel.separator = agm.isSeparator();
 								sepModel.group = false;
 								list.add(sepModel);
 							}
@@ -209,7 +210,7 @@ public class EclipseModelDataProvider {
 								} else {
 									MainMenuItemModel sepModel = new MainMenuItemModel();
 									sepModel.top = false;
-									sepModel.separator = agm.isSeparator();;
+									sepModel.separator = agm.isSeparator();
 									sepModel.group = false;
 									list.add(sepModel);
 								}
@@ -304,7 +305,7 @@ public class EclipseModelDataProvider {
 		if (subMenu != null) {
 
 			if (item.getData() != null) {
-
+				//do nothing
 			}
 
 			forceMenuOpen(subMenu);
@@ -371,6 +372,7 @@ public class EclipseModelDataProvider {
 		return null;
 	}
 
+	@SuppressWarnings({ "unused", "null" })
 	public LocalToolBarItemModel[] getLocalToolBarList(String viewID) {
 
 		IViewPart vp = EclipseWorkPartHelper.getDefault().getViewInCurrentpage(
@@ -443,6 +445,7 @@ public class EclipseModelDataProvider {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public PerferenceModel[] getPrefList() {
 		Vector<PerferenceModel> v = new Vector<PerferenceModel>();
 		List nodes = PlatformUI.getWorkbench().getPreferenceManager()
@@ -452,7 +455,7 @@ public class EclipseModelDataProvider {
 				WorkbenchPreferenceNode pnode = (WorkbenchPreferenceNode) node;
 				v.add(new PerferenceModel(pnode));
 			} catch (Throwable t) {
-
+				t.printStackTrace();
 			}
 		}
 		return v.toArray(new PerferenceModel[] {});
@@ -483,24 +486,24 @@ public class EclipseModelDataProvider {
 			IWizardCategory rootCategory = wizardRegister.getRootCategory();
 			addWizardModel(rootCategory, wizards);
 		} catch (Throwable t) {
-
+			t.printStackTrace();
 		}
 		return wizards;
 	}
 
 	private void addWizardModel(IWizardCategory cat,
 			List<IWizardDescriptor> list) {
-		if (cat == null)
+		if (cat == null) {
 			return;
-		else {
-			IWizardDescriptor[] Wizards = cat.getWizards();
-			for (IWizardDescriptor tmp : Wizards) {
-				list.add(tmp);
-			}
-			IWizardCategory[] cats = cat.getCategories();
-			for (IWizardCategory tmpCat : cats) {
-				addWizardModel(tmpCat, list);
-			}
+		}
+		
+		IWizardDescriptor[] Wizards = cat.getWizards();
+		for (IWizardDescriptor tmp : Wizards) {
+			list.add(tmp);
+		}
+		IWizardCategory[] cats = cat.getCategories();
+		for (IWizardCategory tmpCat : cats) {
+			addWizardModel(tmpCat, list);
 		}
 	}
 
@@ -551,8 +554,6 @@ public class EclipseModelDataProvider {
 						EditorModel tmp = new EditorModel(id, className);
 						v.add(tmp);
 					}
-					// //////////////////////////
-
 				}
 			}
 		}

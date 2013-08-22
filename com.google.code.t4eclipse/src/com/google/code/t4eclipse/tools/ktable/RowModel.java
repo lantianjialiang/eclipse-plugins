@@ -13,11 +13,9 @@ package com.google.code.t4eclipse.tools.ktable;
 
 import java.lang.reflect.Method;
 
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
@@ -35,7 +33,9 @@ import de.kupzog.ktable.t4eclipse.renderers.TextCellRenderer;
  */
 public abstract class RowModel {
 
-	private boolean bcolor=false;
+	@SuppressWarnings("unused")
+	private final boolean bcolor=false;
+	@SuppressWarnings("static-access")
 	protected  TextCellRenderer m_textRenderer = new TextCellRenderer(
 			TextCellRenderer.INDICATION_FOCUS);
 
@@ -61,6 +61,7 @@ public abstract class RowModel {
 	 * @param columName
 	 * @return
 	 */
+	@SuppressWarnings("static-access")
 	public KTableCellRenderer getCellRender(String columName,int col,int row){
  
  
@@ -90,6 +91,7 @@ public abstract class RowModel {
 		return returnObject;
 	}
 
+	@SuppressWarnings("boxing")
 	protected void runMethod(String name,SimpleKTable table,int col,int row) {
 
 		try {
@@ -98,7 +100,7 @@ public abstract class RowModel {
 			m.setAccessible(true);
 			m.invoke(this,table,col,row);
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -116,17 +118,14 @@ public abstract class RowModel {
 					menuItem.addSelectionListener(new SelectionListener() {
 
 						public void widgetDefaultSelected(SelectionEvent e) {
-
+							//do nothing
 						}
 
 						public void widgetSelected(SelectionEvent e) {
-
 							runMethod(RUN_MENUITEM_METHOD + itemStr,  table,   col,  row);
-
 						}
 					});
 				}
-
 			}
 		}
 	}
@@ -143,10 +142,6 @@ public abstract class RowModel {
 		if (message != null) {
 			CodeGenerateMgr.getDefault().printlnCode(message);
 		}
-
-		// MessageDialog.openInformation(PlatformUI.getWorkbench()
-		// .getActiveWorkbenchWindow().getShell(), "CodeGen", message);
-
 	}
 
 	private static String getComment(String comment) {
@@ -162,7 +157,7 @@ public abstract class RowModel {
 	public int getRowHeight() {
 		return 30;
 	}
-	// TODO: check a str that only contains number and character
+
 	private boolean checkStr(String str) {
 		return true;
 	}
