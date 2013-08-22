@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/t4eclipse_1.3.3.jar" id="t4eclipse" version="1.3.3"/>
+   <feature url="features/t4eclipse_1.3.3.jar" id="t4eclipse" version="1.3.3">
+      <category name="my_tools"/>
+   </feature>
+   <category-def name="my_tools" label="I created some eclipse tools">
+      <description>
+         1. xpath Ctrl+2 to copy selection resource path to clipboard 2. alarm to alarm you rest when you work for a long time 3. t4eclipse
+      </description>
+   </category-def>
 </site>
