@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Vendor: jialiang
+Bundle-Name: XPathTools
+Bundle-SymbolicName: XPathTools; singleton:=true
+Bundle-Version: 1.0.2.qualifier
+Bundle-Activator: xpathtools.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.expressions;bundle-version="3.4.300"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.eclipse.core.resources
