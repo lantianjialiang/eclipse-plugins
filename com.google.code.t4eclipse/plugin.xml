@@ -378,9 +378,15 @@
             name="com.google.code.t4eclpse.preference"
             point="org.eclipse.ui.preferencePages">
          <page
-               class="com.google.code.t4eclipse.WorkbenchPreferencePage2"
-               id="com.google.code.t4eclipse.page2"
-               name="name">
+               class="com.google.code.t4eclipse.tools.prefenence.T4EclipseMainPref"
+               id="com.google.code.t4eclipse.main"
+               name="T4Eclipse">
+         </page>
+         <page
+               category="com.google.code.t4eclipse.main"
+               class="com.google.code.t4eclipse.tools.prefenence.EclipseTestLibPref"
+               id="com.google.code.t4eclipse.swtevemt"
+               name="SWT Event Debug">
          </page>
       </extension>
       <extension
@@ -414,5 +420,11 @@
                   tooltip="Analyze Eclipse Main Toolbar">
             </command>
          </menuContribution>
+      </extension>
+      <extension
+            point="org.eclipse.core.runtime.preferences">
+         <initializer
+               class="com.google.code.t4eclipse.tools.prefenence.PreferenceInitializer">
+         </initializer>
       </extension>
 </plugin>

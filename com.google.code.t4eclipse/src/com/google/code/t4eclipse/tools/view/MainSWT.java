@@ -871,6 +871,12 @@ public class MainSWT {
 				| SWT.V_SCROLL);
 		text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL
 				| GridData.FILL_VERTICAL));
+		// scroll to the end is not working
+//		text.addListener(SWT.Modify, new Listener(){
+//		    public void handleEvent(Event e){
+//		    	text.setTopIndex(text.getLineCount() - 1);
+//		    }
+//		});
 		texts[1] = text;
 
 		b.addSelectionListener(new SelectionListener() {
@@ -885,7 +891,6 @@ public class MainSWT {
 
 				} else {
 					Utility.removeDisplayFilter(DisplayListener.getDefault());
-
 				}
 
 			}

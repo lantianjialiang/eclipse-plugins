@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
 
+import com.google.code.t4eclipse.Activator;
 import com.google.code.t4eclipse.tools.view.MainView;
 
 
@@ -67,12 +68,12 @@ public class Utility {
 		while (iter.hasNext()) {
 			Integer eventcode = iter.next();
 
-//			if (Activator.getDefault().getPreferenceStore().getBoolean(
-//					eventMap.get(eventcode))) {
+			if (Activator.getDefault().getPreferenceStore().getBoolean(
+					eventMap.get(eventcode))) {
 				display.addFilter(eventcode, listener);
 				events.add(eventcode);
 
-//			}
+			}
 		}
 	}
 
@@ -139,16 +140,18 @@ public class Utility {
 	public static boolean filter(Event event) {
 		Widget w = event.widget;
 
-		if (w.getData(WidgetData_Exclude) != null)
+		if (w.getData(WidgetData_Exclude) != null) {
 			return false;
-		else if (w instanceof Control) {
+		} else if (w instanceof Control) {
 			Control c = (Control) w;
 			Composite com = c.getParent();
 			if (com != null) {
 				if (com.getData(WidgetData_Exclude) != null)
 					return false;
 			}
-		}
+		} /*else if(w instanceof Tree) {
+			return true;
+		}*/
 		return true;
 //		if (event.widget instanceof ScrollBar)
 //			return false;
