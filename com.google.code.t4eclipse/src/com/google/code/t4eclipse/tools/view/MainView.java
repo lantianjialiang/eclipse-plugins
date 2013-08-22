@@ -62,7 +62,7 @@ public class MainView extends ViewPart {
 		instance.updatePrefTable();
 		instance.updateViewTable();
 		instance.updateWizardTable();
-		instance.updateToolbarTable();
+//		instance.updateToolbarTable();
 		instance.updateMainMenuTable();
 		instance.updateEditorTable();
 	}

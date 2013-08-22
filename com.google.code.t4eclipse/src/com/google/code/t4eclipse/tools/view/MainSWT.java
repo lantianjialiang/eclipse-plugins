@@ -189,12 +189,13 @@ public class MainSWT {
 		createMenuTable(composite2);
 		item2.setControl(composite2);
 		item2.setText("Menu Path");
-		// final TabItem itemViewAction = new TabItem(tabFolder, SWT.NONE);
-		// Composite compositeViewActions = new Composite(tabFolder, SWT.NULL);
-		// compositeViewActions.setLayout(new FillLayout());
-		// createViewActionTable(compositeViewActions);
-		// itemViewAction.setControl(compositeViewActions);
-		// itemViewAction.setText("ViewAction");
+		
+//		final TabItem itemToolbar = new TabItem(tabFolder, SWT.NONE);
+//		Composite compositeToolbar = new Composite(tabFolder, SWT.NULL);
+//		composite2.setLayout(new FillLayout());
+//		createToolBarTable(compositeToolbar);
+//		itemToolbar.setControl(compositeToolbar);
+//		itemToolbar.setText("ToolBar");
 
 		// final TabItem item13 = new TabItem(tabFolder, SWT.NONE);
 		// Composite composite13 = new Composite(tabFolder, SWT.NULL);
@@ -232,7 +233,6 @@ public class MainSWT {
 //		 createControlAnalysis(composite15);
 //		 item15.setControl(composite15);
 //		 item15.setText("Control");
-
 	}
 
 	public MainSWT(Composite parent, IViewPart view) {
