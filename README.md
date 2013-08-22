@@ -8,4 +8,8 @@ Eclipse plugins which I create is putting here
 3. t4eclipse
 
 update site:
-???
+Because github can not take as a update site, 
+so if you want to using those plugins, please got 
+update site to your locat disk with git, then enjoy it.
+
+Thanks.
