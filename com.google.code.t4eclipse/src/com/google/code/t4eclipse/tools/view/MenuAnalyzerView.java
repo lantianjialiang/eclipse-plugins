@@ -11,7 +11,6 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.tools.view;
 
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.ToolBarManager;
@@ -50,17 +49,14 @@ public class MenuAnalyzerView extends ViewPart {
 
 	}
 
+	@SuppressWarnings("unused")
 	public void update(Menu menu) {
 		if (menu != null && !menu.isDisposed()) {
 			// remove the following method will cause problem when reset input
 			this.viewer.setSelection(StructuredSelection.EMPTY);
 			this.viewer.setInput(menu);
 			IViewSite site = (IViewSite) this.getSite();
-
-			// }
-
 		}
-
 	}
 
 	public void updateFromAuto(Menu menu) {
@@ -77,9 +73,7 @@ public class MenuAnalyzerView extends ViewPart {
 				if (id != null && id.contains("AnalyzeNextMenuAction")) {
 					t.setSelection(false);
 				}
-
 			}
-
 		}
 
 		AnalyzeNextMenuAction.addRemovePageListener(false);
@@ -106,7 +100,6 @@ public class MenuAnalyzerView extends ViewPart {
 
 		this.viewer.getTree().setMenu(menu);
 		getSite().registerContextMenu(menuMgr, this.viewer);
-
 	}
 
 	private void createViewer(Composite parent) {
@@ -138,7 +131,7 @@ public class MenuAnalyzerView extends ViewPart {
 
 	@Override
 	public void setFocus() {
-		// DO nothing
+		//do nothing
 	}
 
 	@Override
@@ -147,7 +140,6 @@ public class MenuAnalyzerView extends ViewPart {
 	}
 
 	public TreeViewer getTreeViewer() {
-
 		return this.viewer;
 	}
 }

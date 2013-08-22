@@ -11,8 +11,6 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.tools.view;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 import org.eclipse.jface.action.Action;
@@ -59,7 +57,7 @@ public class SytemImageView extends ViewPart {
 
 	private Action CopyProgramAction;
 
-	private Vector<Image> imageList;
+	private final Vector<Image> imageList;
 
 	public SytemImageView() {
 		imageList = new Vector<Image>();
@@ -206,11 +204,6 @@ public class SytemImageView extends ViewPart {
 					gc.dispose();
 					SytemImageView.this.imageList.add(image32);
 					return image32;
-				} else {
-					// image may be null in eclipse 3.5 release. 3.6 is ok
-					// System.out
-					// .println("image is null.........................");
-
 				}
 			}
 

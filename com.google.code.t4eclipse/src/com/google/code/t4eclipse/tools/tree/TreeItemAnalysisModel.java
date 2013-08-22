@@ -17,9 +17,10 @@ import org.eclipse.core.runtime.IAdapterManager;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.widgets.TreeItem;
 
+@SuppressWarnings("restriction")
 public class TreeItemAnalysisModel {
 
-	private TreeItem item;
+	private final TreeItem item;
 
 	public String getItemDetail() {
 

@@ -27,6 +27,4 @@ public interface Constants {
 	 String classEndInInfo="</class>";
 	
 	 String TABFOLDER_DATA_NAME="T4Eclipse_WidgetAnalysis"; 
-
-
 }

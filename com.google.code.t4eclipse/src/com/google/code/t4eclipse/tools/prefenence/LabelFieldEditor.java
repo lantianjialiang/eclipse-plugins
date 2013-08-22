@@ -77,6 +77,7 @@ public class LabelFieldEditor extends FieldEditor {
 	 */
 	@Override
 	protected void doLoad() {
+		//do nothing
 	}
 
 	/***
@@ -84,6 +85,7 @@ public class LabelFieldEditor extends FieldEditor {
 	 */
 	@Override
 	protected void doLoadDefault() {
+		//do nothing
 	}
 
 	/***
@@ -91,6 +93,7 @@ public class LabelFieldEditor extends FieldEditor {
 	 */
 	@Override
 	protected void doStore() {
+		//do nothing
 	}
 }
 

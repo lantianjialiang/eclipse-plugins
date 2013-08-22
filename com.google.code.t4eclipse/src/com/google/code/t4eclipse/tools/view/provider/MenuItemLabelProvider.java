@@ -34,7 +34,6 @@ public class MenuItemLabelProvider extends LabelProvider implements
 							image.getImageData());
 					return newImage;
 				}
-
 			}
 		}
 		return null;
@@ -47,7 +46,6 @@ public class MenuItemLabelProvider extends LabelProvider implements
 			if (MenuUtility.COLUMNS[columnIndex].equals(MenuUtility.ACTION)) {
 				item.setData("JAVA_TYPE", MenuUtility.getMenuItemRowDataStr(
 						item, MenuUtility.ACTION));
-
 			}
 
 			return MenuUtility.getMenuItemRowDataStr(item, head);
@@ -59,5 +57,4 @@ public class MenuItemLabelProvider extends LabelProvider implements
 	public Font getFont(Object element, int columnIndex) {
 		return null;
 	}
-
 }

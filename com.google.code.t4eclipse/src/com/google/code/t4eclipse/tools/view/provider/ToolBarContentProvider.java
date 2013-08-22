@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.CoolBar;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
+@SuppressWarnings("restriction")
 public class ToolBarContentProvider implements ITreeContentProvider {
 
 	public Object[] getChildren(Object parentElement) {
@@ -81,7 +82,7 @@ public class ToolBarContentProvider implements ITreeContentProvider {
 		return false;
 	}
 
-	@SuppressWarnings("restriction")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Object[] getElements(Object inputElement) {
 
 		if (inputElement instanceof ToolBar) {
@@ -152,13 +153,11 @@ public class ToolBarContentProvider implements ITreeContentProvider {
 	  }
 
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 }

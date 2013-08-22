@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.MenuItem;
 
 public class MenuItemContentProvider implements ITreeContentProvider {
 
+	@SuppressWarnings("null")
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof MenuItem) {
 			MenuItem item = (MenuItem) parentElement;
@@ -29,7 +30,6 @@ public class MenuItemContentProvider implements ITreeContentProvider {
 				MenuManager mm = (MenuManager) data;
 
 				if (mm != null) {
-
 					return mm.getMenu().getItems();
 				}
 			}
@@ -54,6 +54,7 @@ public class MenuItemContentProvider implements ITreeContentProvider {
 		return null;
 	}
 
+	@SuppressWarnings("null")
 	public boolean hasChildren(Object element) {
 		if (element instanceof MenuItem) {
 			MenuItem item = (MenuItem) element;
@@ -66,7 +67,6 @@ public class MenuItemContentProvider implements ITreeContentProvider {
 
 				if (mm != null)
 					return mm.getMenu().getItemCount() > 0;
-
 			}
 
 		}
@@ -85,13 +85,11 @@ public class MenuItemContentProvider implements ITreeContentProvider {
 	}
 
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 }

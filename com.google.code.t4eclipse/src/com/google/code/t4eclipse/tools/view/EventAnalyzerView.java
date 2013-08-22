@@ -42,10 +42,10 @@ import com.google.code.t4eclipse.tools.ktable.model.ControlAnalysisModel;
 
 enum ListenScope {
 	NONE, ALL, SELECTED
-};
+}
 
 public class EventAnalyzerView extends ViewPart {
-	private byte[] lock = new byte[0];
+	private final byte[] lock = new byte[0];
 
 	public static final String T4ECLIPSE_LISTEN_EVNET = "T4ECLIPSE_LISTEN_EVNET";
 	public static final String T4ECLIPSE_LISTEN_EVNET_NEVER_VALUE = "NEVER";
@@ -72,9 +72,10 @@ public class EventAnalyzerView extends ViewPart {
 	// event array will store SWT event that need to be listened
 	// here we assume that all event value is >=0 && <=49, it is working on all
 	// swt version now.
-	private boolean[] selectedEventArray = new boolean[50];
+	private final boolean[] selectedEventArray = new boolean[50];
 
 	private volatile List<Control> controlList;
+	@SuppressWarnings("unused")
 	private Map<Integer, Boolean> map;
 	private Listener filter;
 	private ListenScope scope = ListenScope.NONE;
@@ -82,6 +83,7 @@ public class EventAnalyzerView extends ViewPart {
 	private Composite eventTableComposite;
 	private Text eventLogText;
 
+	@SuppressWarnings("unused")
 	public EventAnalyzerView() {
 		this.controlList = new ArrayList<Control>();
 		this.map = new HashMap<Integer, Boolean>();
@@ -267,7 +269,7 @@ public class EventAnalyzerView extends ViewPart {
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
+				//do nothing
 			}
 		});
 		b_none.addSelectionListener(new SelectionListener() {
@@ -280,7 +282,7 @@ public class EventAnalyzerView extends ViewPart {
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
+				//do nothing
 			}
 		});
 
@@ -294,7 +296,7 @@ public class EventAnalyzerView extends ViewPart {
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
+				//do nothing
 			}
 		});
 
@@ -308,6 +310,7 @@ public class EventAnalyzerView extends ViewPart {
 		unListenThis(composite);
 	}
 
+	@SuppressWarnings("boxing")
 	private void unListenThis(Composite composite) {
 		composite.setData(T4ECLIPSE_LISTEN_EVNET, false);
 		// TODO: set all tree to false
@@ -315,7 +318,7 @@ public class EventAnalyzerView extends ViewPart {
 
 	@Override
 	public void setFocus() {
-
+		//do nothing
 	}
 
 	@Override
@@ -323,10 +326,10 @@ public class EventAnalyzerView extends ViewPart {
 		// remove the listener.
 		removeListener();
 		// set all control's T4ECLIPSE_LISTEN_EVNET to false
-
 		super.dispose();
 	}
 
+	@SuppressWarnings("hiding")
 	private void removeListener() {
 		int[] eventTypes = getAllEventType();
 		for (int eventType : eventTypes) {
@@ -338,6 +341,7 @@ public class EventAnalyzerView extends ViewPart {
 		return eventTypes;
 	}
 
+	@SuppressWarnings("hiding")
 	private void addListener() {
 		int[] eventTypes = getAllEventType();
 		for (int eventType : eventTypes) {

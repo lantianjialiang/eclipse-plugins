@@ -46,8 +46,7 @@ public class EclipseCommonUtility {
 					.getActivePage()
 					.showView(viewId, null, IWorkbenchPage.VIEW_ACTIVATE);
 		} catch (PartInitException e) {
-
+			e.printStackTrace();
 		}
-
 	}
 }

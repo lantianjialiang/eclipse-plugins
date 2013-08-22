@@ -20,9 +20,6 @@ import com.google.code.t4eclipse.tools.model.WidgetModel;
 
 public class WidgetModelUtility   {
 
- 
- 
-
 	public static WidgetModel[] getWidetLevelModels(Control control) {
 
 		List<WidgetModel> list = new ArrayList<WidgetModel>();
@@ -32,7 +29,4 @@ public class WidgetModelUtility   {
 		root.parse(list);
 		return list.toArray(new WidgetModel[0]);
 	}
-
- 
-
 }

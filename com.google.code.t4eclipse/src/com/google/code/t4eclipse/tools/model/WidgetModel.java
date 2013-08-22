@@ -43,7 +43,6 @@ public class WidgetModel {
 
 	public void addLevel() {
 		level += "+";
-
 	}
 
 	public String getLevel() {
@@ -52,7 +51,7 @@ public class WidgetModel {
 
 	private Widget widget;
 
-	private List<WidgetModel> childs = new ArrayList<WidgetModel>();
+	private final List<WidgetModel> childs = new ArrayList<WidgetModel>();
 
 	public void addChild(WidgetModel child) {
 		childs.add(child);
@@ -166,11 +165,13 @@ public class WidgetModel {
 
 		if (this.widget instanceof Control) {
 			Control control = (Control) this.widget;
-			if (control.isFocusControl())
+			if (control.isFocusControl()) {
 				return   Boolean.valueOf(control.isFocusControl()).toString();
-			else
-				return "";
+			}
+			
+			return "";
 		}
+		
 		return "N/A";
 	}
 
@@ -188,9 +189,7 @@ public class WidgetModel {
 			return "N/A(str)";
 	}
 
-	// the flollowing are getter methods
-	// public String
-
+	@Override
 	public String toString() {
 		return "";
 	}
@@ -206,7 +205,5 @@ public class WidgetModel {
 			return null;
 		}
 		return returnObject;
-
 	}
-
 }

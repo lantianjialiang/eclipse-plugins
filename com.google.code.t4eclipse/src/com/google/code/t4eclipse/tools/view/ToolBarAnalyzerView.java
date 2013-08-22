@@ -43,7 +43,6 @@ public class ToolBarAnalyzerView extends ViewPart {
 			// remove the following method will cause problem when reset input
 			this.viewer.setSelection(StructuredSelection.EMPTY);
 			this.viewer.setInput(toolbar);
-
 		}
 
 	}
@@ -52,7 +51,6 @@ public class ToolBarAnalyzerView extends ViewPart {
 			// remove the following method will cause problem when reset input
 			this.viewer.setSelection(StructuredSelection.EMPTY);
 			this.viewer.setInput(toolbar);
-
 		}
 
 	}
@@ -76,7 +74,6 @@ public class ToolBarAnalyzerView extends ViewPart {
 
 		this.viewer.getTree().setMenu(menu);
 		getSite().registerContextMenu(menuMgr, this.viewer);
-
 	}
 
 	private void createViewer(Composite parent) {
@@ -92,7 +89,6 @@ public class ToolBarAnalyzerView extends ViewPart {
 		createColumns(viewer.getTree());
 		viewer.setContentProvider(new ToolBarContentProvider());
 		viewer.setLabelProvider(new ToolBarItemLabelProvider());
-
 	}
 
 	private void createColumns(Tree tree) {
@@ -108,7 +104,7 @@ public class ToolBarAnalyzerView extends ViewPart {
 
 	@Override
 	public void setFocus() {
-		// DO nothing
+		//do nothing
 	}
 
 	@Override
@@ -117,7 +113,6 @@ public class ToolBarAnalyzerView extends ViewPart {
 	}
 
 	public TreeViewer getTreeViewer() {
-
 		return this.viewer;
 	}
 

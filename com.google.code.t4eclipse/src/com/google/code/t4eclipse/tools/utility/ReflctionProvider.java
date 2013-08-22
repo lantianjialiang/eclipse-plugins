@@ -15,6 +15,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.swt.widgets.Control;
 
 import com.google.code.t4eclipse.core.utility.ExceptionUtility;
@@ -110,26 +111,23 @@ public class ReflctionProvider {
 
 		if (m == null) {
 			return "ERROR: can not find this method in this object!";
-		} else {
-			boolean returnnull = false;
-			try {
-				m.setAccessible(true);
-				returnnull = checkReturnVoid(m);
-				Object result = m.invoke(data, null);
-				if (returnnull == true) {
-					return "INFO:this method returns void and is sucessfully invoked !";
-				} else
+		} 
 
-					return ObjectStringMapUtility.getStringDescription(result,
-							"Method:" + m.getName());
-			} catch (Exception e) {
-				String start = "ERROR: exception happened when running this method !\n";
-				String exceptionCause = ExceptionUtility.getErrorMessage(e);
-
-				return start + exceptionCause;
-			}
+		boolean returnnull = false;
+		try {
+			m.setAccessible(true);
+			returnnull = checkReturnVoid(m);
+			Object result = m.invoke(data, (Object)null);
+			if (returnnull == true) {
+				return "INFO:this method returns void and is sucessfully invoked !";
+			} 
+			
+			return ObjectStringMapUtility.getStringDescription(result, "Method:" + m.getName());
+		} catch (Exception e) {
+			String start = "ERROR: exception happened when running this method !\n";
+			String exceptionCause = ExceptionUtility.getErrorMessage(e);
+			return start + exceptionCause;
 		}
-
 	}
 
 	private static boolean checkReturnVoid(Method m) {
@@ -167,20 +165,18 @@ public class ReflctionProvider {
 
 		if (f == null) {
 			return "ERROR: can not find this field in this object!";
-		} else {
-			try {
-				f.setAccessible(true);
-				Object result = f.get(data);
-				return ObjectStringMapUtility.getStringDescription(result,
-						"Field:" + f.getName());
-			} catch (Exception e) {
-				String start = "ERROR: exception happened to get the field!\n";
-				String exceptionCause = ExceptionUtility.getErrorMessage(e);
-				return start + exceptionCause;
-			}
+		} 
+		
+		try {
+			f.setAccessible(true);
+			Object result = f.get(data);
+			return ObjectStringMapUtility.getStringDescription(result, "Field:"
+					+ f.getName());
+		} catch (Exception e) {
+			String start = "ERROR: exception happened to get the field!\n";
+			String exceptionCause = ExceptionUtility.getErrorMessage(e);
+			return start + exceptionCause;
 		}
-
-		// return "get field";
 	}
 
 }

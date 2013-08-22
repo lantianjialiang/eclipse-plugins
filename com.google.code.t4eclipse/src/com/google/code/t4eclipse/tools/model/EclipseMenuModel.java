@@ -17,8 +17,5 @@ public class EclipseMenuModel {
 
 	public boolean Enabled;
 
-
 	public String Selected;
-
-
 }

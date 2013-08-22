@@ -40,13 +40,11 @@ public class MainViewTabUtility {
 					.getActivePage().showView(MainView.viewID, null,
 							IWorkbenchPage.VIEW_VISIBLE);
 		} catch (PartInitException e) {
+			e.printStackTrace();
 		}
 	}
 
 	public static void showTabInT4EclipseView(String tab) {
-//		//make it visiable first
-//		openT4EclipseView();
-		
 		//open the tab
 		TabFolder tabs=MainView.getMainSWT().getTabFolder();
 		TabItem[] items = tabs.getItems();
@@ -56,8 +54,4 @@ public class MainViewTabUtility {
 			}
 		}
 	}
-	
-	
-	
-	
 }

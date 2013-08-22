@@ -11,17 +11,15 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.tools.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-
-import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.SubContributionItem;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Menu;
@@ -37,41 +35,25 @@ import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceNode;
 import org.eclipse.ui.wizards.IWizardCategory;
 import org.eclipse.ui.wizards.IWizardDescriptor;
 import org.eclipse.ui.wizards.IWizardRegistry;
-import org.eclipse.ui.internal.dialogs.WorkbenchPreferenceNode;
 
-import com.google.code.t4eclipse.core.eclipse.helper.EclipseCommonHelper;
-import com.google.code.t4eclipse.core.eclipse.helper.EclipseWizardHelper;
 import com.google.code.t4eclipse.core.eclipse.helper.EclipseWorkPartHelper;
-import com.google.code.t4eclipse.tools.utility.CodeGenerateMgr;
 import com.google.code.t4eclipse.tools.utility.EclipseToolBarUtility;
 
+@SuppressWarnings("restriction")
 public class ModelData {
-
-	// private wizardList;
-	//
-	// private List<EclipsePrefModel> prefList;
-	//
-	// private List<EclipseMenuModel> menufList;
-	//
-	// private List<EclipseToolBarModel> toolBarfList;
-	// prefList = new ArrayList<EclipsePrefModel>();
-	// menufList = new ArrayList<EclipseMenuModel>();
-	// toolBarfList = new ArrayList<EclipseToolBarModel>();
 
 	public static List<EclipseWizardModel> getWizardModel() {
 		List<EclipseWizardModel> wizardList = new ArrayList<EclipseWizardModel>();
 		setWizard(wizardList);
 		return wizardList;
-
 	}
 
 	public static List<EclipseToolBarModel> getToolBarModel() {
-
 		return EclipseToolBarUtility.getToolBarModel();
-
 	}
 
 	/**
@@ -133,7 +115,6 @@ public class ModelData {
 				if (internlItem instanceof ContributionItem) {
 					tbcon = (ContributionItem) internlItem;
 				}
-
 			}
 		}
 
@@ -288,6 +269,7 @@ public class ModelData {
 			findItemText(parentItem, descriptiveText);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static List<EclipsePrefModel> getPrefModel() {
 		List<EclipsePrefModel> perfList = new ArrayList<EclipsePrefModel>();
 		// o is pre order
@@ -301,9 +283,8 @@ public class ModelData {
 				preModel.ID = pnode.getId();
 				perfList.add(preModel);
 			} catch (Throwable t) {
-
+				t.printStackTrace();
 			}
-
 		}
 		return perfList;
 
@@ -316,25 +297,26 @@ public class ModelData {
 			IWizardCategory rootCategory = wizardRegister.getRootCategory();
 			addWizardModel(rootCategory, wizards);
 		} catch (Throwable t) {
+			t.printStackTrace();
 		}
 	}
 
 	private static void addWizardModel(IWizardCategory cat,
 			List<EclipseWizardModel> list) {
-		if (cat == null)
+		if (cat == null) {
 			return;
-		else {
-			IWizardDescriptor[] Wizards = cat.getWizards();
-			for (IWizardDescriptor tmp : Wizards) {
-				EclipseWizardModel model = new EclipseWizardModel();
-				model.ID = tmp.getId();
-				model.CatID = cat.getId();
-				list.add(model);
-			}
-			IWizardCategory[] cats = cat.getCategories();
-			for (IWizardCategory tmpCat : cats) {
-				addWizardModel(tmpCat, list);
-			}
+		}
+		
+		IWizardDescriptor[] Wizards = cat.getWizards();
+		for (IWizardDescriptor tmp : Wizards) {
+			EclipseWizardModel model = new EclipseWizardModel();
+			model.ID = tmp.getId();
+			model.CatID = cat.getId();
+			list.add(model);
+		}
+		IWizardCategory[] cats = cat.getCategories();
+		for (IWizardCategory tmpCat : cats) {
+			addWizardModel(tmpCat, list);
 		}
 	}
 

@@ -13,8 +13,6 @@ package com.google.code.t4eclipse.tools.view.provider;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 import com.google.code.t4eclipse.selection.ControlSelection;
 
@@ -58,11 +56,10 @@ public class ControlContentProvider implements ITreeContentProvider {
 	}
 
 	public void dispose() {
-
+		//do nothing
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
+		//do nothing
 	}
-
 }

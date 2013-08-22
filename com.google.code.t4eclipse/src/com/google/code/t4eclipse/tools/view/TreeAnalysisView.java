@@ -58,16 +58,9 @@ public class TreeAnalysisView extends ViewPart {
 				this.text.setText(m.getItemDetail());
 				return;
 			}
-
 		}
 		this.text.setText("");
 	}
-
-
-
-
-
-
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -86,8 +79,7 @@ public class TreeAnalysisView extends ViewPart {
 		b.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -97,13 +89,12 @@ public class TreeAnalysisView extends ViewPart {
 		c.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
 				tree=null;
 				text.setText("");
-
 			}
 		});
 
@@ -111,12 +102,12 @@ public class TreeAnalysisView extends ViewPart {
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 	/**
 	 * Called when the View is to be disposed
 	 */
+	@Override
 	public void dispose() {
 		this.tree=null;
 		this.text.dispose();

@@ -65,5 +65,4 @@ public class ControlLabelProvider extends LabelProvider implements
 	public Font getFont(Object element, int columnIndex) {
 		return null;
 	}
-
 }

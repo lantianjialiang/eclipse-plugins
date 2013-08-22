@@ -15,6 +15,4 @@ public class EclipseWizardModel {
 	public String ID;
 
 	public String CatID;
-
-
 }

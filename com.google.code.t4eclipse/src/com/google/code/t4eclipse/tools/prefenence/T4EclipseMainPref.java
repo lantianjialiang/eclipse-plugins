@@ -30,6 +30,7 @@ public class T4EclipseMainPref extends FieldEditorPreferencePage implements
 	}
 
 	public void init(IWorkbench workbench) {
+		//do nothing
 	}
 
 	@Override

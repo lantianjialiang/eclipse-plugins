@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -39,6 +38,7 @@ public class EclipseTestLibPref extends FieldEditorPreferencePage implements
 	}
 
 	public void init(IWorkbench workbench) {
+		//do nothing
 	}
 
 	@Override
@@ -53,7 +53,6 @@ public class EclipseTestLibPref extends FieldEditorPreferencePage implements
 			BooleanFieldEditor linkEditor = new BooleanFieldEditor(tmp, tmp,
 					parent);
 			addField(linkEditor);
-
 		}
 	}
 
@@ -62,7 +61,6 @@ public class EclipseTestLibPref extends FieldEditorPreferencePage implements
 		Iterator<String> i = vs.iterator();
 		while (i.hasNext()) {
 			String tmp = i.next();
-
 			prefs.setDefault(tmp, checkInit(tmp));
 		}
 	}
@@ -71,6 +69,7 @@ public class EclipseTestLibPref extends FieldEditorPreferencePage implements
 			SWT.MouseDown, SWT.MouseUp, SWT.MouseDoubleClick, SWT.Selection,
 			SWT.DefaultSelection, SWT.FocusIn, SWT.Expand, SWT.Collapse };
 
+	@SuppressWarnings("boxing")
 	private static boolean checkInit(String tmp) {
 		for (int event : defaultEvents) {
 			if (Utility.eventMap.get(event).equals(tmp))

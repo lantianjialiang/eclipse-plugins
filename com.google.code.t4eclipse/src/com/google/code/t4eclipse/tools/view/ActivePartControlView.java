@@ -71,6 +71,7 @@ public class ActivePartControlView extends ViewPart {
 
 	}
 
+	@SuppressWarnings("hiding")
 	public void showAcitivePart(IWorkbenchPart part) {
 		Control c = ControlUtility.getPartControl(part);
 		this.part = part;
@@ -128,6 +129,7 @@ public class ActivePartControlView extends ViewPart {
 
 					manager.add(new Separator());
 					Action openToolBarAction = new Action() {
+						@SuppressWarnings("hiding")
 						@Override
 						public void run() {
 
@@ -157,6 +159,7 @@ public class ActivePartControlView extends ViewPart {
 										ma.update(bar);
 									}
 								} catch (PartInitException e) {
+									e.printStackTrace();
 								}
 							}
 
@@ -166,6 +169,7 @@ public class ActivePartControlView extends ViewPart {
 					openToolBarAction.setText("Analyze View Toolbar");
 
 					Action openViewMenuAction = new Action() {
+						@SuppressWarnings("hiding")
 						@Override
 						public void run() {
 
@@ -197,10 +201,9 @@ public class ActivePartControlView extends ViewPart {
 										ma.update(menu);
 									}
 								} catch (PartInitException e) {
+									e.printStackTrace();
 								}
 							}
-							//
-
 						}
 					};
 
@@ -222,30 +225,29 @@ public class ActivePartControlView extends ViewPart {
 
 		listener = new IPartListener() {
 
-			public void partOpened(IWorkbenchPart part) {
-
+			public void partOpened(IWorkbenchPart aPart) {
+				//do nothing
 			}
 
-			public void partDeactivated(IWorkbenchPart part) {
-
+			public void partDeactivated(IWorkbenchPart aPart) {
+				//do nothing
 			}
 
-			public void partClosed(IWorkbenchPart part) {
+			public void partClosed(IWorkbenchPart aPart) {
 
-				if (part != null && !(part instanceof ActivePartControlView)) {
-					if (part == ActivePartControlView.this.part) {
+				if (aPart != null && !(aPart instanceof ActivePartControlView)) {
+					if (aPart == ActivePartControlView.this.part) {
 						ActivePartControlView.this.cleanContent();
 					}
 				}
-
 			}
 
-			public void partBroughtToTop(IWorkbenchPart part) {
-
+			public void partBroughtToTop(IWorkbenchPart aPart) {
+				//do nothing
 			}
 
-			public void partActivated(IWorkbenchPart part) {
-
+			public void partActivated(IWorkbenchPart aPart) {
+				//do nothing
 			}
 		};
 

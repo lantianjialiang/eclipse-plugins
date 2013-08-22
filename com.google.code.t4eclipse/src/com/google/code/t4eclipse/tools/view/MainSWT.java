@@ -73,6 +73,7 @@ import com.google.code.t4eclipse.tools.utility.ShellListnerChecker;
 import de.kupzog.ktable.t4eclipse.KTableCellSelectionListener;
 
 public class MainSWT {
+	@SuppressWarnings("unused")
 	private final IViewPart view;
 
 	private TabFolder tabFolder;
@@ -245,6 +246,7 @@ public class MainSWT {
 		final SimpleKTable table = shellInfoKTable;
 		shellActivatelistener = new Listener() {
 
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public void handleEvent(Event event) {
 
 				if (ShellListnerChecker.getCheck() && table != null
@@ -286,6 +288,7 @@ public class MainSWT {
 		Display.getDefault().addFilter(SWT.Dispose, shellActivatelistener);
 	}
 
+	@SuppressWarnings("hiding")
 	private void createWizardTable(Composite composite) {
 		composite.setLayout(new GridLayout());
 
@@ -300,6 +303,7 @@ public class MainSWT {
 		// wizardTable.redraw();
 	}
 
+	@SuppressWarnings("hiding")
 	private void createPreftable(Composite composite) {
 		composite.setLayout(new GridLayout());
 
@@ -314,6 +318,7 @@ public class MainSWT {
 		// perfTale.redraw();
 	}
 
+	@SuppressWarnings("hiding")
 	private void createPerspectiveTable(Composite composite) {
 		composite.setLayout(new GridLayout());
 		perspectiveTable = new SimpleKTable(composite);
@@ -331,6 +336,7 @@ public class MainSWT {
 
 	}
 
+	@SuppressWarnings("hiding")
 	private void createViewTable(Composite composite) {
 		composite.setLayout(new GridLayout());
 		viewTable = new SimpleKTable(composite);
@@ -343,9 +349,8 @@ public class MainSWT {
 		// model.update(EclipseModelDataProvider.getDefault().getViewModelList());
 		// viewTable.redraw();
 	}
-
-	// this class is used to create the toolitem menu and actions for view.
-
+	
+	@SuppressWarnings({ "hiding", "unused" })
 	private void createViewActionTable(Composite composite) {
 		composite.setLayout(new GridLayout());
 		viweIDLabelInViewActionTab = new Label(composite, SWT.None);
@@ -366,6 +371,7 @@ public class MainSWT {
 	 * 
 	 * @param composite
 	 */
+	@SuppressWarnings({ "hiding", "unused" })
 	private void createToolBarTable(Composite composite) {
 		composite.setLayout(new GridLayout());
 		toolBarTable = new SimpleKTable(composite);
@@ -382,6 +388,7 @@ public class MainSWT {
 	 * 
 	 * @param composite
 	 */
+	@SuppressWarnings("hiding")
 	private void createMenuTable(Composite composite) {
 
 		// menuTable = new KTable(composite, SWT.V_SCROLL | SWT.H_SCROLL
@@ -408,45 +415,7 @@ public class MainSWT {
 		editorTable.addMenuListener();
 	}
 
-	// private void createActivePartDetailTable(Composite composite6) {
-	// composite6.setLayout(new GridLayout());
-	//
-	// activePartTypeLabelInViewDetailTab = new Label(composite6, SWT.None);
-	// activePartTypeLabelInViewDetailTab.setText("");
-	// activePartTypeLabelInViewDetailTab.setLayoutData(new GridData(
-	// GridData.FILL_HORIZONTAL));
-	//
-	// activePartIDLabelInViewDetailTab = new Label(composite6, SWT.None);
-	// activePartIDLabelInViewDetailTab.setText("");
-	// activePartIDLabelInViewDetailTab.setLayoutData(new GridData(
-	// GridData.FILL_HORIZONTAL));
-	//
-	// detailActivePartTable = new KTableTree(composite6, SWT.V_SCROLL
-	// | SWT.H_SCROLL | SWT.MULTI | SWTX.EDIT_ON_KEY);
-	// detailActivePartTable.setLayoutData(new GridData(
-	// GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL));
-	//
-	// detailActivePartTable.setModel(getKTableTreeDetailModelForActivePart());
-	//
-	// final Menu menu = new Menu(PlatformUI.getWorkbench()
-	// .getWorkbenchWindows()[0].getShell());
-	// detailActivePartTable.setMenu(menu);
-	//
-	// detailActivePartTable
-	// .addCellSelectionListener(new KTableCellSelectionListener() {
-	//
-	// public void cellSelected(int col, int row, int statemask) {
-	// KTableMenuUtility.addMenuItem(detailActivePartTable,
-	// col, row, menu);
-	// }
-	//
-	// public void fixedCellSelected(int col, int row,
-	// int statemask) {
-	//
-	// }
-	// });
-	// }
-
+	@SuppressWarnings("unused")
 	private void createActivePart(Composite composite6) {
 
 		composite6.setLayout(new GridLayout());
@@ -484,10 +453,10 @@ public class MainSWT {
 		activePartTable.addMenuListener();
 	}
 
+	@SuppressWarnings({ "unused", "hiding" })
 	private void createControlAnalysis(Composite composite) {
 
 		GridLayout gridLayout = new GridLayout(3, false);
-		;
 		composite.setLayout(gridLayout);
 
 		// controls group
@@ -577,6 +546,7 @@ public class MainSWT {
 
 			}
 
+			@SuppressWarnings("unchecked")
 			public void widgetSelected(SelectionEvent e) {
 
 				// add all the method and field to the method combo and field
@@ -616,7 +586,6 @@ public class MainSWT {
 			}
 		});
 
-		//
 		analysisControlTable
 				.addCellSelectionListener(new KTableCellSelectionListener() {
 
@@ -627,7 +596,7 @@ public class MainSWT {
 
 					public void fixedCellSelected(int col, int row,
 							int statemask) {
-
+						//do nothing
 					}
 				});
 
@@ -635,8 +604,7 @@ public class MainSWT {
 		runMethodButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -656,8 +624,7 @@ public class MainSWT {
 		getFieldButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -667,14 +634,13 @@ public class MainSWT {
 							analysisB.getData(), fieldComboText);
 					resultText.setText(result);
 				}
-
 			}
 		});
 
 	}
 
+	@SuppressWarnings("unused")
 	private void createControl(Composite composite14) {
-
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 1;
 
@@ -721,8 +687,7 @@ public class MainSWT {
 		getFiledButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -762,12 +727,10 @@ public class MainSWT {
 
 		NonUIRunButton.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				// Tree tree;
 				m();
 			}
 
@@ -807,12 +770,10 @@ public class MainSWT {
 		runMethodbutton.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				// Tree tree;
 				m();
 			}
 
@@ -893,29 +854,25 @@ public class MainSWT {
 		b.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
 				if (b.getSelection()) {
 					Utility.addDisplayFilter(DisplayListener.getDefault());
-
 				} else {
 					Utility.removeDisplayFilter(DisplayListener.getDefault());
 				}
-
 			}
 		});
 		c.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
 				text.setText("");
-
 			}
 		});
 
@@ -946,6 +903,7 @@ public class MainSWT {
 		b.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -956,7 +914,7 @@ public class MainSWT {
 		c.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-
+				//do nothing
 			}
 
 			public void widgetSelected(SelectionEvent e) {
@@ -967,18 +925,16 @@ public class MainSWT {
 					shellInfoKTable.redraw();
 
 				} catch (Exception ex) {
-
+					ex.printStackTrace();
 				} finally {
 					ShellListnerChecker.setCheck(oldValue);
 				}
-
 			}
 		});
 	}
 
 	public void setFocus() {
-		// TODO Auto-generated method stub
-
+		//do nothing
 	}
 
 	public void dispose() {
@@ -998,10 +954,10 @@ public class MainSWT {
 				this.actionViewTable.dispose();	
 			}			
 		}
-
 	}
 
 	// following methods are called by update action in the local view bar
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updateWizardTable() {
 		try {
 			SimpleKTableModel model = (SimpleKTableModel) this.wizardTable
@@ -1009,11 +965,11 @@ public class MainSWT {
 			model.update(EclipseModelDataProvider.getDefault().getWizardList());
 			this.wizardTable.redraw();
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
-
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updatePrefTable() {
 		try {
 			SimpleKTableModel model = (SimpleKTableModel) this.perfTale
@@ -1021,10 +977,11 @@ public class MainSWT {
 			model.update(EclipseModelDataProvider.getDefault().getPrefList());
 			this.perfTale.redraw();
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updatePerspectiveTable() {
 		try {
 			SimpleKTableModel model = (SimpleKTableModel) this.perspectiveTable
@@ -1033,10 +990,11 @@ public class MainSWT {
 					.getPerspectiveList());
 			this.perspectiveTable.redraw();
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updateViewTable() {
 		try {
 			SimpleKTableModel model = (SimpleKTableModel) this.viewTable
@@ -1045,10 +1003,11 @@ public class MainSWT {
 					.getViewModelList());
 			this.viewTable.redraw();
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updateEditorTable() {
 		try {
 			SimpleKTableModel model = (SimpleKTableModel) this.editorTable
@@ -1057,11 +1016,12 @@ public class MainSWT {
 					.getEditorModelList());
 			this.editorTable.redraw();
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updateToolbarTable() {
 		try {
 			SimpleKTableModel model = (SimpleKTableModel) this.toolBarTable
@@ -1072,10 +1032,11 @@ public class MainSWT {
 			model.update(list);
 			this.toolBarTable.redraw();
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updateMainMenuTable() {
 		try {
 			SimpleKTableModel model = (SimpleKTableModel) this.menuTable
@@ -1085,12 +1046,12 @@ public class MainSWT {
 			model.update(list);
 			this.menuTable.redraw();
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 	}
 
 	// end of methods are called by update action in the local view bar
-
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updateLocalToolBarTable(RowModel[] rows, String viewID) {
 		try {
 			if (rows != null && rows.length > 0) {
@@ -1100,13 +1061,13 @@ public class MainSWT {
 						.getModel();
 				model.update(rows);
 				this.actionViewTable.redraw();
-
 			}
 		} catch (Throwable e) {
-
+			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void addToAnalysisControlTable(ControlAnalysisModel row) {
 
 		if (row != null) {
@@ -1116,6 +1077,7 @@ public class MainSWT {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void clearAnalysisControlTable() {
 		SimpleKTableModel<ControlAnalysisModel> model = (SimpleKTableModel<ControlAnalysisModel>) this.analysisControlTable
 				.getModel();
@@ -1123,6 +1085,7 @@ public class MainSWT {
 		this.analysisControlTable.redraw();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void updateActivepartTable() {
 		IWorkbenchPart part = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getActivePage().getActivePart();
@@ -1169,9 +1132,8 @@ public class MainSWT {
 					this.activePartTable.setSelection(1, focusRow, true);
 				}
 			} catch (Throwable e) {
-
+				e.printStackTrace();
 			}
-
 		}
 	}
 
