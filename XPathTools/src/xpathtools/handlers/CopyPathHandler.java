@@ -7,6 +7,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.dnd.Clipboard;
@@ -44,14 +46,26 @@ public class CopyPathHandler extends AbstractHandler {
 			for (Iterator<?> iterator = strucSelection.iterator(); iterator
 					.hasNext();) {
 				Object element = iterator.next();
-				//System.out.println(element.toString());
+				IResource resource = null;
 				if(element instanceof IResource) {
-					IResource resource = (IResource) element;
-					location = resource.getLocation();
-					String locationStr = location.toOSString();
-					System.out.println("Copy path: " + locationStr + " to clipboard.");
-					copyToClipboard(locationStr);
+					resource = (IResource) element;					
+				} else if (element instanceof ICompilationUnit) {
+					ICompilationUnit unit = (ICompilationUnit)element;
+					try {
+						resource = unit.getUnderlyingResource();
+					} catch (JavaModelException e) {
+						e.printStackTrace();
+					}
 				}
+				
+				if(resource == null) {
+					return null;
+				}
+				
+				location = resource.getLocation();
+				String locationStr = location.toOSString();
+				System.out.println("Copy path: " + locationStr + " to clipboard.");
+				copyToClipboard(locationStr);
 			}
 		}
 		return null;

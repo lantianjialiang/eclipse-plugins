@@ -31,7 +31,7 @@
       <key
             commandId="XPathTools.commands.copypath"
             contextId="org.eclipse.ui.contexts.window"
-            sequence="M1+0"
+            sequence="M1+2"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
       </key>
    </extension>
