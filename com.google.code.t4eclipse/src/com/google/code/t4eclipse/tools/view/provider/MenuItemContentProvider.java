@@ -23,6 +23,10 @@ public class MenuItemContentProvider implements ITreeContentProvider {
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof MenuItem) {
 			MenuItem item = (MenuItem) parentElement;
+			
+			if(item.isDisposed()) {
+				return null;
+			}
 
 			Object data = item.getData();
 

@@ -211,12 +211,12 @@ public class MainSWT {
 		item11.setControl(composite11);
 		item11.setText("Shell");
 
-		 final TabItem item12 = new TabItem(tabFolder, SWT.NONE);
-		 Composite composite12 = new Composite(tabFolder, SWT.NULL);
-		 composite12.setLayout(new FillLayout());
-		 createEventDebugger(composite12);
-		 item12.setControl(composite12);
-		 item12.setText("Event");
+//		 final TabItem item12 = new TabItem(tabFolder, SWT.NONE);
+//		 Composite composite12 = new Composite(tabFolder, SWT.NULL);
+//		 composite12.setLayout(new FillLayout());
+//		 createEventDebugger(composite12);
+//		 item12.setControl(composite12);
+//		 item12.setText("Event");
 //
 //		 final TabItem item14 = new TabItem(tabFolder, SWT.NONE);
 //		 Composite composite14 = new Composite(tabFolder, SWT.NULL);

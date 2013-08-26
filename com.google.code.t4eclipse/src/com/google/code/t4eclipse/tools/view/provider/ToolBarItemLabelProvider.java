@@ -58,7 +58,6 @@ public class ToolBarItemLabelProvider extends LabelProvider implements
 			if (head.equals(ToolBarUtility.ACTION)) {
 				return ToolBarUtility.getActionContributioItemClass(item);
 			}
-
 		}
 
 		return "";

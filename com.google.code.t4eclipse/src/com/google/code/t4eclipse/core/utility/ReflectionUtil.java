@@ -55,7 +55,7 @@ public class ReflectionUtil {
 			re.methodOrFieldFound = true;
 			try {
 				m.setAccessible(true);
-				re.result = m.invoke(o, (Object)null);
+				re.result = m.invoke(o);
 			} catch (Exception e) {
 				re.ex = e;
 			}

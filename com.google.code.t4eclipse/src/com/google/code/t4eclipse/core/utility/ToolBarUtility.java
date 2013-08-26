@@ -11,6 +11,7 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
+import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.CoolBarManager;
@@ -27,7 +28,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.RetargetAction;
 import org.eclipse.ui.internal.PluginAction;
 import org.eclipse.ui.internal.WorkbenchWindow;
+import org.eclipse.ui.internal.handlers.HandlerProxy;
 import org.eclipse.ui.internal.registry.IWorkbenchRegistryConstants;
+import org.eclipse.ui.menus.CommandContributionItem;
 
 import com.google.code.t4eclipse.core.utility.ReflectionUtil.ObjectResult;
 
@@ -81,12 +84,18 @@ public class ToolBarUtility {
 			if (ac != null)
 				return ac.getId() != null ? ac.getId() : "";
 		}
+		
 		if (data != null && data instanceof SubContributionItem) {
 
 			SubContributionItem sub = (SubContributionItem) data;
 			IContributionItem innerItem = sub.getInnerItem();
 			return innerItem.getId();
 
+		}
+		
+		if(data != null && data instanceof CommandContributionItem) {
+			CommandContributionItem cci = (CommandContributionItem)data;
+			return cci.getId();
 		}
 
 		return "";
@@ -107,7 +116,31 @@ public class ToolBarUtility {
 			}
 
 		}
+		
+		if(data != null && data instanceof CommandContributionItem) {
+			CommandContributionItem cci = (CommandContributionItem)data;
+			return getActionContributionItemFromHandler(cci.getCommand().getCommand().getHandler());
+		}
 
+		return "";
+	}
+	
+	public static String getActionContributionItemFromHandler(IHandler data) {
+		if(data == null || !(data instanceof HandlerProxy)) {
+			return "";
+		}
+		HandlerProxy hp = (HandlerProxy)data;
+		
+		ObjectResult oResult = ReflectionUtil.invokeMethod(
+				"loadHandler", hp, HandlerProxy.class);
+		Object obj = oResult.result;
+		
+		if (obj != null && obj instanceof Boolean) {
+			if(((Boolean)obj).booleanValue()) {
+				ObjectResult result = ReflectionUtil.getField("handler", hp);	
+				return result.result.getClass().getName();
+			}
+		}
 		return "";
 	}
 

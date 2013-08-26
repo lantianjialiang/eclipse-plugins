@@ -44,8 +44,8 @@ public class ToolBarAnalyzerView extends ViewPart {
 			this.viewer.setSelection(StructuredSelection.EMPTY);
 			this.viewer.setInput(toolbar);
 		}
-
 	}
+	
 	public void update(CoolBar toolbar) {
 		if (toolbar != null && !toolbar.isDisposed()) {
 			// remove the following method will cause problem when reset input

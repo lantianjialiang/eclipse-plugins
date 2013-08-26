@@ -22,28 +22,26 @@ import com.google.code.t4eclipse.core.eclipse.helper.EclipseWorkPartHelper;
 import com.google.code.t4eclipse.core.utility.ToolBarUtility;
 import com.google.code.t4eclipse.tools.view.ToolBarAnalyzerView;
 
-public class ShowMainToolBarHandler extends AbstractHandler
-{
-  public Object execute(ExecutionEvent event)
-    throws ExecutionException
-  {
-    IViewPart vp = EclipseWorkPartHelper.getDefault().getViewInCurrentpage(
-      "com.google.code.t4eclipse.tools.view.ToolBarAnalyzerView");
-    if ((vp instanceof ToolBarAnalyzerView)) {
-      ToolBarAnalyzerView view = (ToolBarAnalyzerView)vp;
-      CoolBar cb = ToolBarUtility.getEclipseCoolBar();
-      if (cb != null) {
-        view.update(cb);
-      } else {
-        ICoolBarManager cbManager = ToolBarUtility.getEclipseCoolBarForE4();
-        if (cbManager == null) {
-          return null;
-        }
+public class ShowMainToolBarHandler extends AbstractHandler {
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		IViewPart vp = EclipseWorkPartHelper.getDefault().getViewInCurrentpage(
+				"com.google.code.t4eclipse.tools.view.ToolBarAnalyzerView");
+		if ((vp instanceof ToolBarAnalyzerView)) {
+			ToolBarAnalyzerView view = (ToolBarAnalyzerView) vp;
+			CoolBar cb = ToolBarUtility.getEclipseCoolBar();
+			if (cb != null) {
+				view.update(cb);
+			} else {
+				ICoolBarManager cbManager = ToolBarUtility
+						.getEclipseCoolBarForE4();
+				if (cbManager == null) {
+					return null;
+				}
 
-        view.update(cbManager);
-      }
-    }
+				view.update(cbManager);
+			}
+		}
 
-    return null;
-  }
+		return null;
+	}
 }
