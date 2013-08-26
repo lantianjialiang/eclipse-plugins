@@ -197,12 +197,12 @@ public class MainSWT {
 //		itemToolbar.setControl(compositeToolbar);
 //		itemToolbar.setText("ToolBar");
 
-		// final TabItem item13 = new TabItem(tabFolder, SWT.NONE);
-		// Composite composite13 = new Composite(tabFolder, SWT.NULL);
-		// composite13.setLayout(new FillLayout());
-		// createActivePart(composite13);
-		// item13.setControl(composite13);
-		// item13.setText("ActivePart");
+//		 final TabItem item13 = new TabItem(tabFolder, SWT.NONE);
+//		 Composite composite13 = new Composite(tabFolder, SWT.NULL);
+//		 composite13.setLayout(new FillLayout());
+//		 createActivePart(composite13);
+//		 item13.setControl(composite13);
+//		 item13.setText("ActivePart");
 
 		final TabItem item11 = new TabItem(tabFolder, SWT.NONE);
 		Composite composite11 = new Composite(tabFolder, SWT.NULL);
@@ -823,59 +823,6 @@ public class MainSWT {
 			}
 		}
 		return null;
-	}
-
-	private void createEventDebugger(Composite composite12) {
-		composite12.setLayout(new GridLayout());
-		composite12.setData(Utility.WidgetData_Exclude, "");
-		final Button b = new Button(composite12, SWT.CHECK);
-		b.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		b.setText("Listen");
-
-		final Button c = new Button(composite12, SWT.PUSH);
-		c.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		c.setText("Clear");
-
-		// final Button d = new Button(composite12, SWT.PUSH);
-		// d.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		// d.setText("ForDebug");
-		final Text text = new Text(composite12, SWT.MULTI | SWT.H_SCROLL
-				| SWT.V_SCROLL);
-		text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL
-				| GridData.FILL_VERTICAL));
-		// scroll to the end is not working
-//		text.addListener(SWT.Modify, new Listener(){
-//		    public void handleEvent(Event e){
-//		    	text.setTopIndex(text.getLineCount() - 1);
-//		    }
-//		});
-		texts[1] = text;
-
-		b.addSelectionListener(new SelectionListener() {
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//do nothing
-			}
-
-			public void widgetSelected(SelectionEvent e) {
-				if (b.getSelection()) {
-					Utility.addDisplayFilter(DisplayListener.getDefault());
-				} else {
-					Utility.removeDisplayFilter(DisplayListener.getDefault());
-				}
-			}
-		});
-		c.addSelectionListener(new SelectionListener() {
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//do nothing
-			}
-
-			public void widgetSelected(SelectionEvent e) {
-				text.setText("");
-			}
-		});
-
 	}
 
 	private void createShellLogger(Composite composite11) {

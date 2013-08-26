@@ -34,8 +34,13 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
+import com.google.code.t4eclipse.core.utility.ControlUtility;
+import com.google.code.t4eclipse.selection.ControlSelection;
+import com.google.code.t4eclipse.selection.RootControlSelection;
 import com.google.code.t4eclipse.tools.ktable.SimpleKTable;
 import com.google.code.t4eclipse.tools.ktable.SimpleKTableModel;
 import com.google.code.t4eclipse.tools.ktable.model.ControlAnalysisModel;
@@ -74,7 +79,8 @@ public class EventAnalyzerView extends ViewPart {
 	// swt version now.
 	private final boolean[] selectedEventArray = new boolean[50];
 
-	private volatile List<Control> controlList;
+	private volatile List<ControlSelection> controlList;
+	private SimpleKTableModel<ControlAnalysisModel> model;
 	@SuppressWarnings("unused")
 	private Map<Integer, Boolean> map;
 	private Listener filter;
@@ -85,7 +91,7 @@ public class EventAnalyzerView extends ViewPart {
 
 	@SuppressWarnings("unused")
 	public EventAnalyzerView() {
-		this.controlList = new ArrayList<Control>();
+		this.controlList = new ArrayList<ControlSelection>();
 		this.map = new HashMap<Integer, Boolean>();
 		for (boolean b : this.selectedEventArray) {
 			b = false;
@@ -114,12 +120,12 @@ public class EventAnalyzerView extends ViewPart {
 					// TODO: analyze widget to related controls
 					Widget w = event.widget;
 					boolean inSelected = false;
-					for (Control c : EventAnalyzerView.this.controlList) {
-						if (w == c) {
-							inSelected = true;
-							break;
-						}
-					}
+//					for (Control c : EventAnalyzerView.this.controlList) {
+//						if (w == c) {
+//							inSelected = true;
+//							break;
+//						}
+//					}
 					if (inSelected == false) {
 						return;
 					}
@@ -131,7 +137,27 @@ public class EventAnalyzerView extends ViewPart {
 			}
 		};
 
+		fileControlList();
+		
 		addListener();
+	}
+
+	private void fileControlList() {		
+		model = new SimpleKTableModel<ControlAnalysisModel>(
+				ControlAnalysisModel.class);
+		
+		IWorkbenchPart part = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().getActivePart();
+		Control c = ControlUtility.getPartControl(part);
+		RootControlSelection rcs = new RootControlSelection(c);
+		ControlSelection[] css = rcs.getChildren();
+		ControlAnalysisModel rowModel = null;
+		for(int i = 0; i < css.length; i++) {
+			controlList.add(css[i]);
+			rowModel = new ControlAnalysisModel(
+					css[i].getControl(), css[i].getClassName());
+			model.addKTableRow(rowModel);
+		}
 	}
 
 	@Override
@@ -214,8 +240,7 @@ public class EventAnalyzerView extends ViewPart {
 		GridData d2 = new GridData(GridData.FILL_HORIZONTAL
 				| GridData.FILL_VERTICAL);
 		analysisControlTable.setLayoutData(d2);
-		SimpleKTableModel<ControlAnalysisModel> model = new SimpleKTableModel<ControlAnalysisModel>(
-				ControlAnalysisModel.class);
+	
 		analysisControlTable.setModel(model);
 
 		Group analysis = new Group(composite, SWT.None);

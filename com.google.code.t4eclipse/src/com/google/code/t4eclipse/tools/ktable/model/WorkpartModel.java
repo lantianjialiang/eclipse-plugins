@@ -274,7 +274,7 @@ public class WorkpartModel extends RowModel {
 	@Override
 	public String[] getMenuItemNames() {
 		// return new String[] { "Find", "Visiable", "Analysis" };
-		return new String[] { "Visiable", "Analysis" };
+		return new String[] { "Visible", "Analysis" };
 	}
 
 	@Override

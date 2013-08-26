@@ -236,6 +236,15 @@
                      menubarPath="com.google.code.tool4eclipse.menu/action"
                      tooltip="open view to analyze menu in eclipse">
                </action>
+               <action
+                     class="com.google.code.t4eclipse.tools.action.ShowSWTAnalyzerAction"
+                     icon="icons/cpyqual_menu.gif"
+                     id="com.google.code.t4eclipse.tools.action.ShowSWTAnalyzerAction"
+                     label="SWT Event Analyzer"
+                     menubarPath="com.google.code.tool4eclipse.menu/action"
+                     state="true"
+                     style="radio">
+               </action>
          <action
                class="com.google.code.t4eclipse.tools.action.UpdatePartAction"
                icon="icons/analysis.bmp"
