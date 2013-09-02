@@ -42,14 +42,6 @@
         id="com.google.code.t4eclipse.tools.view.ToolBarAnalyzerView"
         name="ToolBar Analyzer">
   </view>
-  <view
-        allowMultiple="false"
-        category="T4Eclipse"
-        class="com.google.code.t4eclipse.tools.view.EventAnalyzerView"
-        icon="icons/cpyqual_menu.gif"
-        id="com.google.code.t4eclipse.tools.view.EventAnalyzerView"
-        name="SWT Event Analyzer">
-  </view>
 
     </extension>
 
