@@ -6,6 +6,8 @@ Bundle-Version: 1.3.3.qualifier
 Bundle-Activator: com.google.code.t4eclipse.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
- org.eclipse.jdt.ui;resolution:=optional
+ org.eclipse.jdt.ui;resolution:=optional,
+ org.eclipse.ui.ide;bundle-version="3.8.1",
+ org.eclipse.e4.ui.workbench.renderers.swt;bundle-version="0.10.2"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Ben Xu, jialiang

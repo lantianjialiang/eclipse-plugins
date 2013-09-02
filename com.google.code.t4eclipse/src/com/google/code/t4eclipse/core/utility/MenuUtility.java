@@ -11,9 +11,12 @@
  ******************************************************************************/
 package com.google.code.t4eclipse.core.utility;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -33,8 +36,11 @@ import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.NewWizardMenu;
 import org.eclipse.ui.actions.RetargetAction;
+import org.eclipse.ui.internal.ActionSetContributionItem;
 import org.eclipse.ui.internal.PluginAction;
+import org.eclipse.ui.internal.actions.NewWizardShortcutAction;
 import org.eclipse.ui.internal.registry.IWorkbenchRegistryConstants;
 
 import com.google.code.t4eclipse.core.utility.ReflectionUtil.ObjectResult;
@@ -77,7 +83,7 @@ public class MenuUtility {
 				String text = item.getText();
 				if (text == null || text.length() == 0) {
 					Object data = item.getData();
-					if (data instanceof Separator) {
+					if (isSeparator(item) || isSeparator(data)) {
 						text = "-------------";
 					}
 				}
@@ -113,18 +119,65 @@ public class MenuUtility {
 
 	private static String getMenuItemActionID(MenuItem item) {
 		Object data = item.getData();
-		if (data != null && data instanceof ActionContributionItem) {
+		if(data == null || isSeparator(item)) {
+			return "";
+		}
+		
+		if (data instanceof ActionContributionItem) {
 			ActionContributionItem ci = (ActionContributionItem) data;
 			IAction ac = ci.getAction();
 			if (ac != null)
 				return ac.getId() != null ? ac.getId() : "";
 		}
+		
+		if(data instanceof MenuManager) {
+			MenuManager mm = (MenuManager)data;
+			return mm.getId() != null ? mm.getId() : "";
+		}
+		
+		if(data instanceof ActionSetContributionItem) {
+			ActionSetContributionItem ascItem = (ActionSetContributionItem)data;
+			return ascItem.getActionSetId() != null ? ascItem.getActionSetId() : "";
+		}
+		
+		if (data instanceof NewWizardMenu) {
+			NewWizardMenu nwMenu = (NewWizardMenu)data;
+			if(nwMenu.isSeparator()) {
+				return "";
+			}
+						
+			//get actions map using reflect
+			ObjectResult result = ReflectionUtil.getField("actions", nwMenu);
+			if(result.result == null) {
+				return "";
+			}
+			
+			Map actions = (Map)result.result;
+			Iterator iterator = actions.values().iterator();
+			NewWizardShortcutAction action = null;
+			while(iterator.hasNext()) {
+				action = (NewWizardShortcutAction)iterator.next();
+				if(action.getText().equals(item.getText())) {
+					return action.getWizardDescriptor().getId();
+				}
+			}			
+		}
+		
+		if(data instanceof HandledContributionItem) {
+			HandledContributionItem hcItem = (HandledContributionItem)data;
+			return hcItem.getId();
+		}
+		
 		return "";
 	}
 
 	public static String getMenuItemActionClassStr(MenuItem item) {
 		Object data = item.getData();
-		if (data != null && data instanceof ActionContributionItem) {
+		if(data == null) {
+			return "";
+		}
+		
+		if (data instanceof ActionContributionItem) {
 			ActionContributionItem ci = (ActionContributionItem) data;
 
 			IAction ac = ci.getAction();
@@ -152,12 +205,78 @@ public class MenuUtility {
 				if (handler != null) {
 					return handler.getClass().getName();
 				}
-
 			}
 
 			if (ac != null)
 				return ac.getClass().getName();
 
+		}
+		
+		if (data instanceof ActionSetContributionItem) {
+			ActionSetContributionItem ascItem = (ActionSetContributionItem)data;
+			if(ascItem.getInnerItem() instanceof MenuManager) {
+				return "";
+			}
+			
+			return ascItem.getInnerItem().getClass().getName();
+		}
+		
+		if (data instanceof NewWizardMenu) {
+			NewWizardMenu nwMenu = (NewWizardMenu)data;
+			if(nwMenu.isSeparator()) {
+				return "";
+			}
+			
+			if(item.getText().startsWith("P&roject")) {
+				ObjectResult result = ReflectionUtil.getField("newProjectAction", nwMenu);
+				if(result.result == null) {
+					return "";
+				}
+				
+				IAction action = (IAction)result.result;
+				return action.getClass().getName();
+			}
+			
+			if(item.getText().startsWith("E&xample")) {
+				ObjectResult result = ReflectionUtil.getField("newExampleAction", nwMenu);
+				if(result.result == null) {
+					return "";
+				}
+				
+				IAction action = (IAction)result.result;
+				return action.getClass().getName();
+			}
+			
+			if(item.getText().startsWith("&Other")) {
+				ObjectResult result = ReflectionUtil.getField("showDlgAction", nwMenu);
+				if(result.result == null) {
+					return "";
+				}
+				
+				IAction action = (IAction)result.result;
+				return action.getClass().getName();
+			}
+			
+			//get actions map using reflect
+			ObjectResult result = ReflectionUtil.getField("actions", nwMenu);
+			if(result.result == null) {
+				return "";
+			}
+			
+			Map actions = (Map)result.result;
+			Iterator iterator = actions.values().iterator();
+			IAction action = null;
+			while(iterator.hasNext()) {
+				action = (IAction)iterator.next();
+				if(action.getText().equals(item.getText())) {
+					return action.getClass().getName();
+				}
+			}			
+		}
+		
+		if(data instanceof HandledContributionItem) {
+			HandledContributionItem hcItem = (HandledContributionItem)data;
+			return hcItem.getClass().getName();
 		}
 
 		return "";
@@ -266,6 +385,21 @@ public class MenuUtility {
 				.getToolBarManager();
 		return toolBarManager.getControl();
 
+	}
+	
+	public static boolean isSeparator(Object data) {
+		if (data instanceof Separator) {
+			return true;
+		}
+		
+		if(data instanceof MenuItem) {
+			MenuItem mi = (MenuItem)data;
+			if(mi.toString().endsWith("{|}")) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 //	private static void printItem(IContributionItem tmpItem) {

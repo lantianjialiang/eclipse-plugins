@@ -69,16 +69,7 @@ public class ReflectionUtil {
 	public static ObjectResult getField(String text, Object w) {
 
 		ObjectResult re = new ObjectResult();
-		Field field = null;
-		Field[] fields = w.getClass().getDeclaredFields();
-
-		for (Field f : fields) {
-			if (f.getName() != null && f.getName().equals(text)) {
-				field = f;
-				break;
-			}
-
-		}
+		Field field = getFiled2(text, w.getClass());
 
 		if (field == null) {
 			re.methodOrFieldFound = false;
@@ -205,6 +196,27 @@ public class ReflectionUtil {
 			return e;
 		}
 
+	}
+	
+	public static Field getFiled2(String text, Class w) {
+		Field field = null;
+		Field[] fields = w.getDeclaredFields();
+
+		for (Field f : fields) {
+			if (f.getName() != null && f.getName().equals(text)) {
+				field = f;
+				break;
+			}
+		}
+		
+		if(field == null) {
+			Class parent = w.getSuperclass();
+			if(parent != null) {
+				field = getFiled2(text, parent);
+			}			
+		}
+		
+		return field;
 	}
 
 }
